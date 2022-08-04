@@ -37,10 +37,10 @@ public class Employee implements Serializable {
 
     private LocalDateTime updateTime;
 
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT)   // 表示插入时起作用
     private Long createUser;
 
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)  // 表示插入和修改时起作用
     private Long updateUser;
 
 }
