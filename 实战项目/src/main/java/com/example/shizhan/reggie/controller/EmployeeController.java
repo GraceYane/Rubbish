@@ -1,6 +1,5 @@
 package com.example.shizhan.reggie.controller;
 
-import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.shizhan.reggie.common.R;
@@ -9,12 +8,10 @@ import com.example.shizhan.reggie.entity.Employee;
 import com.example.shizhan.reggie.mapper.EmployeeMapper;
 import com.example.shizhan.reggie.service.Interface.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,6 +19,8 @@ import java.util.List;
 @Slf4j
 @RestController
 /*
+chf的第一次提交
+测试
 @RestController = @Controller + @ResponseBody组成，等号右边两位同志简单介绍两句，就明白我们@RestController的意义了：
 @Controller 将当前修饰的类注入SpringBoot IOC容器，使得从该类所在的项目跑起来的过程中，这个类就被实例化。当然也有语义化的作用，即代表该类是充当Controller的作用
 @ResponseBody 它的作用简短截说就是指该类中所有的API接口返回的数据，甭管你对应的方法返回Map或是其他Object，它会以Json字符串的形式返回给客户端，

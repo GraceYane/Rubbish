@@ -14,5 +14,4 @@ public class ShiZhanApplication {
         log.info("自动装配成功");
     }
 
-
 }
