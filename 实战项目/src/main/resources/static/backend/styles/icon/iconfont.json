@@ -1,58 +1,44 @@
 {
-  "id": "2552591",
-  "name": "rjwm",
+  "id": "3568127",
+  "name": "rubbish",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "21641541",
-      "name": "category",
-      "font_class": "category",
-      "unicode": "e606",
-      "unicode_decimal": 58886
+      "icon_id": "23768617",
+      "name": "垃圾回收站点",
+      "font_class": "station",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
     },
     {
-      "icon_id": "21641542",
-      "name": "member",
-      "font_class": "member",
-      "unicode": "e607",
-      "unicode_decimal": 58887
-    },
-    {
-      "icon_id": "21641545",
-      "name": "user",
-      "font_class": "user",
-      "unicode": "e608",
-      "unicode_decimal": 58888
-    },
-    {
-      "icon_id": "21641546",
-      "name": "order",
+      "icon_id": "2076282",
+      "name": " 订单",
       "font_class": "order",
-      "unicode": "e609",
-      "unicode_decimal": 58889
+      "unicode": "e897",
+      "unicode_decimal": 59543
     },
     {
-      "icon_id": "21641547",
-      "name": "combo",
-      "font_class": "combo",
+      "icon_id": "2959023",
+      "name": "轨迹图",
+      "font_class": "guiji",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "11409196",
+      "name": "司机信息管理",
+      "font_class": "driver",
       "unicode": "e60a",
       "unicode_decimal": 58890
     },
     {
-      "icon_id": "21641548",
-      "name": "lock",
-      "font_class": "lock",
-      "unicode": "e60b",
-      "unicode_decimal": 58891
-    },
-    {
-      "icon_id": "21641611",
-      "name": "food",
-      "font_class": "food",
-      "unicode": "e60c",
-      "unicode_decimal": 58892
+      "icon_id": "15188145",
+      "name": "员工管理",
+      "font_class": "member",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
     }
   ]
 }

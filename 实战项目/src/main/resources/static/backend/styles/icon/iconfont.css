@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 2552591 */
-  src: url('iconfont.woff2?t=1621231825060') format('woff2'),
-       url('iconfont.woff?t=1621231825060') format('woff'),
-       url('iconfont.ttf?t=1621231825060') format('truetype');
+  font-family: "iconfont"; /* Project id 3568127 */
+  src: url('iconfont.woff2?t=1659613719767') format('woff2'),
+       url('iconfont.woff?t=1659613719767') format('woff'),
+       url('iconfont.ttf?t=1659613719767') format('truetype');
 }
 
 .iconfont {
@@ -13,31 +13,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-category:before {
-  content: "\e606";
-}
-
-.icon-member:before {
-  content: "\e607";
-}
-
-.icon-user:before {
-  content: "\e608";
+.icon-station:before {
+  content: "\e60c";
 }
 
 .icon-order:before {
-  content: "\e609";
+  content: "\e897";
 }
 
-.icon-combo:before {
+.icon-guiji:before {
+  content: "\e61d";
+}
+
+.icon-driver:before {
   content: "\e60a";
 }
 
-.icon-lock:before {
-  content: "\e60b";
-}
-
-.icon-food:before {
-  content: "\e60c";
+.icon-member:before {
+  content: "\e60d";
 }
 
