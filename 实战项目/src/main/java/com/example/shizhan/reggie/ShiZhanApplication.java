@@ -1,10 +1,6 @@
 package com.example.shizhan.reggie;
 
-import com.example.shizhan.reggie.entity.A;
-import com.example.shizhan.reggie.entity.B;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
