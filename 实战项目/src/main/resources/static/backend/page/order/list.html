@@ -46,13 +46,25 @@
     <div class="container">
       <!-- 搜索项 -->
       <div class="tableBar">
-        <el-input v-model="input" placeholder="请输入订单号" style="width: 250px">
+        <el-input v-model="input" placeholder="请输入订单号" style="width: 250px; margin-right: 40px">
           <i slot="prefix" class="el-input__icon el-icon-search" style="cursor: pointer" @click="init"></i>
         </el-input>
+        <template>
+          <el-select v-model="input2" clearable placeholder="请选择订单状态">
+            <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+          </el-select>
+        </template>
 
-        <el-input v-model="input2" placeholder="请输入订单状态" style="width: 250px; margin-left: 20px">
+
+        <!--<el-input v-model="input2" placeholder="请输入订单状态" style="width: 250px; margin-left: 20px">
           <i slot="prefix" class="el-input__icon el-icon-search" style="cursor: pointer" @click="init"></i>
-        </el-input>
+        </el-input>-->
+
         <el-date-picker v-model="orderTime"
           clearable 
           value-format="yyyy-MM-dd HH:mm:ss"
@@ -62,7 +74,7 @@
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :default-time="['00:00:00', '23:59:59']"
-          style="width: 400px;margin-left: 20px;"
+          style="width: 400px;margin-left: 40px;"
         ></el-date-picker>
         <el-button type="primary" class="search-btn" @click="init">查询</el-button>
       </div>
@@ -201,7 +213,25 @@
              tableData : [],
              dialogVisible: false,
              diaForm: {},
-             loading: false
+             loading: false,
+
+            options: [{
+              value: '1',
+              label: '待付款'
+            }, {
+              value: '2',
+              label: '正在派送'
+            }, {
+              value: '3',
+              label: '已派送'
+            }, {
+              value: '4',
+              label: '已完成'
+            }, {
+              value: '5',
+              label: '已取消'
+            }],
+            value: ''
           }
         },
         computed: {},
@@ -302,5 +332,6 @@
         }
       })
     </script>
+
 </body>
 </html>

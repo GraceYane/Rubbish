@@ -7,7 +7,6 @@ import com.example.shizhan.reggie.entity.orders;
 import org.apache.commons.lang.StringUtils;
 import com.example.shizhan.reggie.service.Interface.orderService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +42,8 @@ public class OrderController {
         /**
          * 对订单状态的过滤
          */
-        Integer id_status = null;
+        // System.out.println(status);
+        /*Integer id_status = null;
         if(status != null) {
             if(status.equals("待付款")) {
                 id_status = 1;
@@ -56,8 +56,8 @@ public class OrderController {
             }else {
                 id_status = 5;
             }
-        }
-        queryWrapper.like(StringUtils.isNotEmpty(status), orders::getStatus, id_status);
+        }*/
+        queryWrapper.eq(StringUtils.isNotEmpty(status), orders::getStatus, status);
         // 关于日期
         // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         /**
