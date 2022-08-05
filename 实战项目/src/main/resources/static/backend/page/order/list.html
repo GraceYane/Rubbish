@@ -149,44 +149,18 @@
         </div>
         <div class="item-box">
           <span class="label">当前经度：</span>
-          <span class="des">{{ diaForm.consignee }}</span>
+          <span class="des">{{ diaForm.longitude }}</span>
         </div>
         <div class="item-box">
           <span class="label">当前纬度：</span>
-          <span class="des">{{ diaForm.phone }}</span>
+          <span class="des">{{ diaForm.latitude }}</span>
         </div>
         <div class="item-box">
           <span class="label">订单状态：</span>
           <span class="des">{{ diaForm.status }}</span>
         </div>
-
       </div>
-      <!-- <el-form ref="diaForm" :model="diaForm" class="dia-form">
-        <el-form-item label="订单号">
-          <span>{{ diaForm.number }}</span>
-        </el-form-item>
-        <el-form-item label="订单状态">
-          <span>{{ getOrderType(diaForm) }}</span>
-        </el-form-item>
-        <el-form-item label="收货人">
-          <span>{{ diaForm.consignee }}</span>
-        </el-form-item>
-        <el-form-item label="联系电话">
-          <span>{{ diaForm.phone }}</span>
-        </el-form-item>
-        <el-form-item label="地址">
-          <span>{{ diaForm.address }}</span>
-        </el-form-item>
-        <el-form-item label="支付金额">
-          <span>{{ diaForm.amount }}</span>
-        </el-form-item>
-        <el-form-item label="下单时间">
-          <span>{{ diaForm.orderTime }}</span>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-      </span> -->
+
     </el-dialog>
   </div>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
@@ -298,7 +272,7 @@
               }).then(() => {
                 editOrderDetail(params).then(res => {
                   if (res.code === 1) {
-                    this.$message.success(status === 3 ? '订单已派送' : '订单已完成')
+                    this.$message.success(status === 2 ? '订单运输中' : '订单已完成')
                     this.init()
                   } else {
                     this.$message.error(res.msg || '操作失败')
