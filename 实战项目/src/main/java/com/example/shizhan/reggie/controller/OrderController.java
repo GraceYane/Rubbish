@@ -8,9 +8,10 @@ import org.apache.commons.lang.StringUtils;
 import com.example.shizhan.reggie.service.Interface.orderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigInteger;
+import java.util.Map;
 
 
 /**
@@ -41,7 +42,8 @@ public class OrderController {
         /**
          * 对订单状态的过滤
          */
-        Integer id_status = null;
+        // System.out.println(status);
+        /*Integer id_status = null;
         if(status != null) {
             if(status.equals("待付款")) {
                 id_status = 1;
@@ -54,8 +56,8 @@ public class OrderController {
             }else {
                 id_status = 5;
             }
-        }
-        queryWrapper.like(StringUtils.isNotEmpty(status), orders::getStatus, id_status);
+        }*/
+        queryWrapper.eq(StringUtils.isNotEmpty(status), orders::getStatus, status);
         // 关于日期
         // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         /**
@@ -75,5 +77,22 @@ public class OrderController {
         os.page(pageInfo, queryWrapper);
         // 返回
         return R.success(pageInfo);
+    }
+
+    /**
+     * 完成运输状态的更改
+     */
+    @PutMapping
+    public R<String> changeOrderState(@RequestBody Map<String, Object> json) {
+
+        // 得到数据
+        orders o = new orders();
+        o.setStatus((Integer) json.get("status"));
+        String id = json.get("id").toString();
+        o.setId(BigInteger.valueOf(Integer.parseInt(id)));
+        // 调用service修改数据
+        os.updateById(o);
+        // 返回对应的响应
+        return R.success("");
     }
 }
