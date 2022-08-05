@@ -157,9 +157,10 @@
           submitForm (formName, st) {
 
             this.$refs[formName].validate((valid) => {
-                this.ruleForm.password = 'yizizhiming'
+
               if (valid) {
                 if (this.actionType === 'add') {
+                    this.ruleForm.password = 'e10adc3949ba59abbe56e057f20f883e'
                   const params = {
                     ...this.ruleForm,
 

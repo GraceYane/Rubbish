@@ -109,10 +109,6 @@ public class EmployeeController {
         employeeService.save(employee);
         return R.success("新增成功");
     }
-    @GetMapping
-    public void x(){
-        log.info("hhhhhhh");
-    }
 
     @GetMapping("/page")
     public R<Page> page(int page,int pageSize,String name){
@@ -139,7 +135,7 @@ public class EmployeeController {
      * @param employee
      * @return
      */
-     @PutMapping
+    @PutMapping
     public R<String> update(HttpServletRequest request,@RequestBody Employee employee){
         log.info("employee:{}",employee);
 
@@ -150,5 +146,20 @@ public class EmployeeController {
 
          employeeService.updateById(employee);
          return R.success("修改成功");
-     }
+    }
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public R<Employee> getById(@PathVariable Long id){
+        Employee emp = employeeService.getById(id);
+        if(emp!=null) {
+            return R.success(emp);
+        }else{
+            return R.error("为查询到员工信息");
+        }
+    }
 }
