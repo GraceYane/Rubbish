@@ -3,7 +3,6 @@ package com.example.shizhan.reggie.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.shizhan.reggie.common.R;
-import com.example.shizhan.reggie.entity.A;
 import com.example.shizhan.reggie.entity.Employee;
 import com.example.shizhan.reggie.mapper.EmployeeMapper;
 import com.example.shizhan.reggie.service.Interface.EmployeeService;
@@ -37,23 +36,20 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Autowired
     private EmployeeMapper employeeMapper;
-    @Autowired
-    private A a;
 
 
     @PostMapping("/login")                         //@RequestBody，接受json格式的数据
     public R<Employee> login(HttpServletRequest request,@RequestBody Employee employee){
         // 1、拿到前端传递过来的数据，拿到密码，对密码进行加密
         String password = employee.getPassword();
-          password = DigestUtils.md5DigestAsHex(password.getBytes());
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
 
-          List<Employee> list = employeeMapper.selectList(null);
-          log.info("查询结果：");
-          log.info(String.valueOf(a.x));
-//        for (int i = 0; i < list.size(); i++) {
-//            log.info(list.get(i).getUsername());
-//        }
-          log.info(employeeService.toString());
+        List<Employee> list = employeeMapper.selectList(null);
+        log.info("查询结果：");
+        //        for (int i = 0; i < list.size(); i++) {
+        //            log.info(list.get(i).getUsername());
+        //        }
+        log.info(employeeService.toString());
 
 
           // 根据页面提交的用户名查询数据库,queryWrapper里边放置查询条件和查询的id
