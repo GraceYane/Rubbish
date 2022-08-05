@@ -1,7 +1,6 @@
 package com.example.shizhan.reggie.entity;
 
 import lombok.Data;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 import java.io.Serializable;
 import java.math.BigInteger;

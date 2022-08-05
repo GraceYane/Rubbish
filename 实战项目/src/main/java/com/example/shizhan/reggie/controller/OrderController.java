@@ -7,10 +7,12 @@ import com.example.shizhan.reggie.entity.orders;
 import org.apache.commons.lang.StringUtils;
 import com.example.shizhan.reggie.service.Interface.orderService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigInteger;
+import java.util.Map;
 
 
 /**
@@ -75,5 +77,22 @@ public class OrderController {
         os.page(pageInfo, queryWrapper);
         // 返回
         return R.success(pageInfo);
+    }
+
+    /**
+     * 完成运输状态的更改
+     */
+    @PutMapping
+    public R<String> changeOrderState(@RequestBody Map<String, Object> json) {
+
+        // 得到数据
+        orders o = new orders();
+        o.setStatus((Integer) json.get("status"));
+        String id = json.get("id").toString();
+        o.setId(BigInteger.valueOf(Integer.parseInt(id)));
+        // 调用service修改数据
+        os.updateById(o);
+        // 返回对应的响应
+        return R.success("");
     }
 }
