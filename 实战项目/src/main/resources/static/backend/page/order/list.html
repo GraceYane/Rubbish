@@ -100,12 +100,12 @@
             <el-button type="text" @click="goDetail(row)" class="blueBug">
               查看
             </el-button>
-            <el-divider v-if="row.status === 2" direction="vertical"></el-divider>
-            <el-button v-if="row.status === 2" type="text" @click="cancelOrDeliveryOrComplete(3, row.id)" class="blueBug">
+            <el-divider v-if="row.status === 1" direction="vertical"></el-divider>
+            <el-button v-if="row.status === 1" type="text" @click="cancelOrDeliveryOrComplete(2, row.id)" class="blueBug">
               运输
             </el-button>
-            <el-divider v-if="row.status === 3" direction="vertical"></el-divider>
-            <el-button v-if="row.status === 3" type="text" @click="cancelOrDeliveryOrComplete(4, row.id)" class="blueBug">
+            <el-divider v-if="row.status === 2" direction="vertical"></el-divider>
+            <el-button v-if="row.status === 2" type="text" @click="cancelOrDeliveryOrComplete(3, row.id)" class="blueBug">
               完成
             </el-button>
           </template>
@@ -217,18 +217,15 @@
 
             options: [{
               value: '1',
-              label: '待付款'
+              label: '待运输'
             }, {
               value: '2',
-              label: '正在派送'
+              label: '运输中'
             }, {
               value: '3',
-              label: '已派送'
-            }, {
-              value: '4',
               label: '已完成'
             }, {
-              value: '5',
+              value: '4',
               label: '已取消'
             }],
             value: ''
@@ -271,18 +268,15 @@
             let str = ''
             switch(row.status){
                 case 1:
-                    str =  '待付款'
+                    str =  '待运输'
                 break;
                 case 2:
-                    str =  '正在派送'
+                    str =  '运输中'
                 break;
                 case 3:
-                    str =  '已派送'
-                break;
-                case 4:
                     str =  '已完成'
                 break;
-                case 5:
+                case 4:
                     str =  '已取消'
                 break;
 
