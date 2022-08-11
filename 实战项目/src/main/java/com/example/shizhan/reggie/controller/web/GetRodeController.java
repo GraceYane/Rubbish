@@ -1,4 +1,4 @@
-package com.example.shizhan.reggie.controller;
+package com.example.shizhan.reggie.controller.web;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.shizhan.reggie.common.R;
