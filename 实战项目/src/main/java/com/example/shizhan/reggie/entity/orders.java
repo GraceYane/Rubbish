@@ -1,5 +1,6 @@
 package com.example.shizhan.reggie.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,6 +17,9 @@ public class orders implements Serializable {
     private String number;
 
     private int status;
+
+    @TableField(exist = false)  // 设置数据库中没有的字段
+    private String status_Str;
 
     private BigInteger userId;
 
