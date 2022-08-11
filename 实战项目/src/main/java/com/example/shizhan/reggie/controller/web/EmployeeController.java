@@ -1,4 +1,4 @@
-package com.example.shizhan.reggie.controller;
+package com.example.shizhan.reggie.controller.web;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,7 +29,7 @@ chf的第一次提交
     注解 @RequestMapping 可以用在类定义处和方法定义处。
         类定义处：规定初步的请求映射，相对于web应用的根目录；
         方法定义处：进一步细分请求映射，相对于类定义处的URL。*/
-public class EmployeeController {
+public class    EmployeeController {
 
     //@Resource
     @Autowired
@@ -40,16 +40,12 @@ public class EmployeeController {
 
     @PostMapping("/login")                         //@RequestBody，接受json格式的数据
     public R<Employee> login(HttpServletRequest request,@RequestBody Employee employee){
+       log.info("************************88");
         // 1、拿到前端传递过来的数据，拿到密码，对密码进行加密
         String password = employee.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());
 
         List<Employee> list = employeeMapper.selectList(null);
-        log.info("查询结果：");
-        //        for (int i = 0; i < list.size(); i++) {
-        //            log.info(list.get(i).getUsername());
-        //        }
-        log.info(employeeService.toString());
 
 
           // 根据页面提交的用户名查询数据库,queryWrapper里边放置查询条件和查询的id
@@ -81,6 +77,7 @@ public class EmployeeController {
     //@GetMapping("/logout")
     public R<String> logout(HttpServletRequest request){
         //清理Session中保存的当前登录员工的id
+        request.getSession().removeAttribute("employee");
         return R.success("退出成功");
     }
 
