@@ -2,8 +2,6 @@ package com.example.shizhan.reggie.config;
 
 import com.example.shizhan.reggie.common.JacksonObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -23,7 +21,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         //下边这句话是让网址的访问路径去 static路径下找资源
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         //registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
-        //registry.addResourceHandler("/static/front/**").addResourceLocations("classpath:/static/front/");
+        registry.addResourceHandler("/static/android/driver/**").addResourceLocations("classpath:/static/android/driver");
     }
 
     /**

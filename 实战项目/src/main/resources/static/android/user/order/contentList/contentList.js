@@ -29,7 +29,7 @@
       str += `
       <div class="order-item">
         <div class="order-item-inner">
-          <img class="item-img" src="http://p1.meituan.net/waimaipoi/957ad35a1ca2ff8408f0f5c6ca0758ab32768.jpg"/>
+          <img class="item-img" src="https://s1.ax1x.com/2022/08/12/vYyUxJ.png"/>
           <div class="item-right">
             <div class="item-top">
               <p class="order-name one-line">${element.startAddress}→${element.destination}</p>

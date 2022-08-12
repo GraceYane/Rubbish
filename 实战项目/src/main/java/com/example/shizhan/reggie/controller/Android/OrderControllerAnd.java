@@ -1,5 +1,6 @@
 package com.example.shizhan.reggie.controller.Android;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.shizhan.reggie.common.R;
 import com.example.shizhan.reggie.entity.orders;
 import com.example.shizhan.reggie.service.Interface.orderService;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -26,7 +28,13 @@ public class OrderControllerAnd {
 
     @GetMapping("/map")
     public R<List<orders>> getAll() {
-        List<orders> orders = os.list();  // 拿到所有的数据
+        LambdaQueryWrapper<orders> queryWrapper = new LambdaQueryWrapper();
+        queryWrapper.ne(orders::getStatus, 4);  // 不等于4的数据
+        queryWrapper.ne(orders::getStatus, 3);
+
+        // 拿到所有的数据
+        List<orders> orders = os.list(queryWrapper);  // 拿到所有的数据
+
         for (com.example.shizhan.reggie.entity.orders order : orders) {
             if(order.getStatus() == 1) {
                 order.setStatus_Str("待运输");
@@ -59,6 +67,40 @@ public class OrderControllerAnd {
     public R<orders> getById(int id) {
         orders os = this.os.getById(id);
 
+        if(os.getStatus() == 1) {
+            os.setStatus_Str("待运输");
+        }else if(os.getStatus() == 2) {
+            os.setStatus_Str("运输中");
+        }else if(os.getStatus() == 3) {
+            os.setStatus_Str("已完成");
+        }else if(os.getStatus() == 4) {
+            os.setStatus_Str("已取消");
+        }
+
         return R.success(os);
+    }
+
+    @GetMapping("/cancelOrder")
+    public R<Boolean> cancelOrder(int id) {
+        orders o = new orders();
+        o.setId(BigInteger.valueOf(id));
+        o.setStatus(4);
+        os.updateById(o);   // 更新该状态
+
+        return R.success(true);
+    }
+
+    @GetMapping("changeState")
+    public R<Boolean> changeState(int id) {
+        // 先拿到数据库中的id
+        R<orders> ordersR = getById(id);
+        int status = ordersR.getData().getStatus();
+        // 让状态自增
+        orders o = new orders();
+        o.setId(BigInteger.valueOf(id));
+        o.setStatus(status + 1);
+        // 进行数据的更新
+        os.updateById(o);
+        return R.success(true);
     }
 }
