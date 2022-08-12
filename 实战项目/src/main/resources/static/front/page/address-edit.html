@@ -49,7 +49,7 @@
                     <span>标签：</span> 
                     <span v-for="(item,index) in labelList" :key="index" @click="form.label = item;activeIndex = index" :class="{spanItem:true,spanActiveSchool:activeIndex === index}">{{item}}</span>
                 </div>
-                <div class="divSave" @click="saveAddress">保存地址</div>
+                <div class="divSave" @click="submit">保存地址</div>
                 <div class="divDelete" @click="deleteAddress" v-if="id">删除地址</div>
             </div>
         </div>
@@ -76,6 +76,7 @@
                             sex:'1',//0表示女 1 表示男
                             detail:'',//收货地址
                             label:'公司',//标签
+                            note:'备注'
                         },
                         labelList:[
                             '无','公司','家','学校'
@@ -92,7 +93,9 @@
                 },
                 methods:{
                     goBack(){
-                        history.go(-1)
+                        window.location.href='index.html';
+
+                        // history.go(-1)
                     },
                     async initData(){
                         const params = parseUrl(window.location.search)
@@ -107,7 +110,7 @@
                             }
                         }
                     },
-                    async saveAddress(){
+                    async submit(){
                         const form = this.form
                         if(!form.consignee){
                             this.$notify({ type:'warning', message:'请输入联系人'});
@@ -127,6 +130,11 @@
                             return  
                         }
                         let res= {}
+
+                        //此处为yy的代码
+                        await submitApi(this.form)
+                        //
+
                         if(this.id){
                             res = await updateAddressApi(this.form)
                         }else{
