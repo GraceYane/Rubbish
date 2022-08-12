@@ -21,7 +21,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         //下边这句话是让网址的访问路径去 static路径下找资源
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         //registry.addResourceHandler("/backend/**").addResourceLocations("classpath:/backend/");
-        registry.addResourceHandler("/static/android/driver/**").addResourceLocations("classpath:/static/android/driver");
+        //registry.addResourceHandler("/static/android/driver/**").addResourceLocations("classpath:/static/android/driver");
     }
 
     /**
