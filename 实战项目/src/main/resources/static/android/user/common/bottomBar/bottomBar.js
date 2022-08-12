@@ -4,7 +4,10 @@
     var items = [{
       key: 'index',
       value: '首页'
-    }, {
+    },{
+      key: 'sort',
+      value: '分类'
+    },{
       key: 'order',
       value: '订单'
     }, {
