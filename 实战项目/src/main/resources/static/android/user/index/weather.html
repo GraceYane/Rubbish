@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>天气预报查询</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style type="text/css">
+        html,body,#container{
+            height:100%;
+        }
+        .weather{
+            width:5rem;
+            display:inline-block;
+            padding-left:0.5rem;
+        }
+        .sharp{
+            height: 1rem;
+            width: 1rem;
+            background-color: white;
+            transform: rotateZ(45deg);
+            box-shadow: 2px 2px 3px rgba(114, 124, 245, .5);
+            position: inherit;
+            margin-left: 10.5rem;
+            margin-top: -6px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<div class="info">
+    <h4>预报天气</h4><hr>
+    <p id='forecast'></p>
+</div>
+<script type="text/javascript">
+    window._AMapSecurityConfig = {
+        securityJsCode: '379c8f0fe2d018fe33c3b8e02c061f79',
+    }
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=c058db8c51691a61683065bc1c2c3f6b"></script>
+<script type="text/javascript">
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: [116.486409,39.921489],
+        zoom: 12
+    });
+    AMap.plugin('AMap.Weather', function() {
+        var weather = new AMap.Weather();
+        //查询实时天气信息, 查询的城市到行政级别的城市，如朝阳区、杭州市
+        weather.getLive('朝阳区', function(err, data) {
+            if (!err) {
+                var str = [];
+                str.push('<h4 >实时天气' + '</h4><hr>');
+                str.push('<p>城市/区：' + data.city + '</p>');
+                str.push('<p>天气：' + data.weather + '</p>');
+                str.push('<p>温度：' + data.temperature + '℃</p>');
+                str.push('<p>风向：' + data.windDirection + '</p>');
+                str.push('<p>风力：' + data.windPower + ' 级</p>');
+                str.push('<p>空气湿度：' + data.humidity + '</p>');
+                str.push('<p>发布时间：' + data.reportTime + '</p>');
+                var marker = new AMap.Marker({map: map, position: map.getCenter()});
+                var infoWin = new AMap.InfoWindow({
+                    content: '<div class="info" style="position:inherit;margin-bottom:0;">'+str.join('')+'</div><div class="sharp"></div>',
+                    isCustom:true,
+                    offset: new AMap.Pixel(0, -37)
+                });
+                infoWin.open(map, marker.getPosition());
+                marker.on('mouseover', function() {
+                    infoWin.open(map, marker.getPosition());
+                });
+            }
+        });
+        //未来4天天气预报
+        weather.getForecast('朝阳区', function(err, data) {
+            if (err) {return;}
+            var str = [];
+            for (var i = 0,dayWeather; i < data.forecasts.length; i++) {
+                dayWeather = data.forecasts[i];
+                str.push(dayWeather.date+' <span class="weather">'+dayWeather.dayWeather+'</span> '+ dayWeather.nightTemp + '~' + dayWeather.dayTemp + '℃');
+            }
+            document.getElementById('forecast').innerHTML = str.join('<br>');
+        });
+    });
+</script>
+</body>
+</html>

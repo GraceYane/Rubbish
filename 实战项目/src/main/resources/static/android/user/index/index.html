@@ -1,82 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-  <title>首页</title>
-  <script>
-    (function () {
-      var docEl = document.documentElement;
+    <meta charset="UTF-8">
 
-      function setRemUnit () {
-        // 获取到rem的基准值
-        var rem = docEl.clientWidth / 10;
+    <!-- 引入vue内库 -->
+    <script src="https://cdn.bootcss.com/vue/2.5.20/vue.min.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <title>首页</title>
 
-        // 动态设置html根元素的fontSize
-        docEl.style.fontSize = rem + 'px';
-      }
+    <script>
+        (function () {
+            var docEl = document.documentElement;
 
-      setRemUnit();
+            function setRemUnit() {
+                // 获取到rem的基准值
+                var rem = docEl.clientWidth / 10;
 
-      // 窗口大小变化时 触发
-      window.addEventListener('resize', setRemUnit);
+                // 动态设置html根元素的fontSize
+                docEl.style.fontSize = rem + 'px';
+            }
 
-      // 窗口出现在当前屏幕时
-      window.addEventListener('pageshow', function (e) {
-        if (e.persisted) {
-          setRemUnit();
+            setRemUnit();
+
+            // 窗口大小变化时 触发
+            window.addEventListener('resize', setRemUnit);
+
+            // 窗口出现在当前屏幕时
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) {
+                    setRemUnit();
+                }
+            });
+        })();
+    </script>
+    <link rel="stylesheet" href="../lib/reset.css">
+    <link rel="stylesheet" href="./header/header.css">
+    <link rel="stylesheet" href="./searchBar/searchBar.css">
+    <link rel="stylesheet" href="./category/category.css">
+    <link rel="stylesheet" href="./contentList/contentList.css">
+    <link rel="stylesheet" href="./starScore/starScore.css">
+    <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+
+    <style>
+        #fa{
+            display: flex;
+            justify-content: space-around;
         }
-      });
-    })();
-  </script>
-  <link rel="stylesheet" href="../lib/reset.css">
-  <link rel="stylesheet" href="./header/header.css">
-  <link rel="stylesheet" href="./searchBar/searchBar.css">
-  <link rel="stylesheet" href="./category/category.css">
-  <link rel="stylesheet" href="./contentList/contentList.css">
-  <link rel="stylesheet" href="./starScore/starScore.css">
-  <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+    </style>
 </head>
+
+<script>
+    function buy() {
+
+        window.location.href = 'address.html';
+    }
+
+</script>
 <body>
-  <!-- 头部开始 -->
-  <header class="header">
+<!-- 头部开始 -->
+<header class="header">
     <div class="search-bar">
-      <div class="bar-location">
-        <div class="location-icon"></div>
-        <div class="location-text">郑州市</div>
-      </div>
-      <div class="search-button">
-        <p class="place-holder">鸡翅</p>
-      </div>
+        <div class="bar-location">
+            <div class="location-icon"></div>
+            <div class="location-text">郑州市</div>
+        </div>
+        <div class="search-button">
+            <p class="place-holder">请输入...</p>
+        </div>
     </div>
-    <img class="header-img" src="https://app.nihaoshijie.com.cn/upload/bannertemp.e8a6fa63.jpg" alt="">
-  </header>
-  <!-- 头部结束 -->
+    <img class="header-img" src="img/advertising.png" alt="">
+</header>
+<!-- 头部结束 -->
 
-  <!-- 类目开始 -->
-  <div class="category-content clearfix">
-  </div>
-  <!-- 类目结束 -->
+<div id="line"><el-divider></el-divider></div>
+<!-- 类目开始 -->
 
-  <!-- 商家列表开始 -->
-  <div class="list-content">
-    <h4 class="list-title">
-      <span class="title-line"></span>
-      <span>附近商家</span>
-      <span class="title-line"></span>
+<div id="fa">
+    <div >
+        <img  style="width:90%;height:90%"  onclick="one()" src="http://p0.meituan.net/jungle/f33ed552c52b4466b6308a2c14dbc62d4882.png">
+        <p style="font-size: 30%">查看附近</p>
+    </div>
+    <div >
+        <img  onclick="buy()" style="width:90%;height:90%"  src="http://p0.meituan.net/jungle/6b93ee96be3df7cf2bb6e661280b047d3975.png">
+        <p style="font-size: 30%">上门回收</p>
+    </div>
+    <div >
+        <img onclick="newk()" style="width:90%;height:90%" src="http://p1.meituan.net/jungle/d24bda7352a2af54dded09bdf532055b9416.png">
+        <p style="font-size: 30%">新知识</p>
+    </div>
+    <div>
+        <img onclick="weather()" style="width:90%;height:90%" src="http://p1.meituan.net/jungle/76f6523e25c16df8641717ae1518c0235859.png">
+        <p style="font-size: 30%">实时天气查询</p>
+    </div>
+</div>
+
+
+<!-- 类目结束 -->
+
+<!-- 商家列表开始 -->
+<div class="list-content">
+    <h4 class="list-title" >
+        <span class="title-line"></span>
+        <span></span>
+        <span class="title-line"></span>
     </h4>
-    <div class="list-wrap"></div>
-    <div class="loading">加载中</div>
-  </div>
-  <!-- 商家列表结束 -->
 
-  <!-- 底部栏开始 -->
-  <div class="bottom-bar"></div>
-  <!-- 底部栏结束 -->
-  <script src="../lib/jquery.min.js"></script>
-  <script src="./category/category.js"></script>
-  <script src="./contentList/contentList.js"></script>
-  <script src="./starScore/starScore.js"></script>
-  <script src="../common/bottomBar/bottomBar.js"></script>
+    <div class="list-content" id="list">
+<!--        将iframe的src设为一个变量-->
+        <iframe  id="ifr" src="table.html"  height="700dp" width="500dp"></iframe>
+    </div>
+  
+    <div class="loading">加载中</div>
+</div>
+<!-- 商家列表结束 -->
+
+<!-- 底部栏开始 -->
+<div class="bottom-bar"></div>
+<!-- 底部栏结束 -->
+
+<script src="../lib/jquery.min.js"></script>
+<script src="./category/category.js"></script>
+<script src="./contentList/contentList.js"></script>
+<script src="./starScore/starScore.js"></script>
+<script src="../common/bottomBar/bottomBar.js"></script>
 </body>
+
+<script>
+
+    function one(){
+        ifr.src = 'RubbishStation.html';
+    }
+    function newk(){
+        ifr.src = 'table.html';
+    }
+    function weather(){
+        ifr.src='weather.html';
+    }
+    new Vue({
+    el: '#list',
+    data() {
+        return {
+            iframeUrl: 'https://www.bilibili.com/'
+          
+        }
+    },
+    method:{
+        RubbishStation:function(){
+            this.iframeUrl = 'RubbishStation.html'
+        }
+    }
+})</script>
+<script> new Vue({
+    el: '#line',
+    data() {
+        return {}}
+})</script>
 </html>
