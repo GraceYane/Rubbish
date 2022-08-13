@@ -85,9 +85,14 @@
   float: right;
   width: 4rem;
   height: .853333rem;
-  color: #6b450a;
-  background-color: palegreen;
+
+  color: #2B2B2B;
+  background-color: #E6F0FA;
+  border: white;
+
   font-size: .373333rem;
+  font-family: "楷体";
+  border-radius: 30px;
   line-height: .853333rem;
   text-align: center;
   margin-right: .266667rem;
