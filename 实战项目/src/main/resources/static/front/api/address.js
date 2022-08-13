@@ -1,3 +1,13 @@
+//提交订单
+function  submitApi(data){
+    return $axios({
+        'url': '/addressBook',
+        'method': 'post',
+        data
+    })
+}
+
+
 //获取所有地址
 function addressListApi() {
     return $axios({

@@ -29,6 +29,9 @@
 .bottom-bar .index.btn-item .tab-icon {
   background-image: url(./img/homeIcon.png);
 }
+.bottom-bar .sort.btn-item .tab-icon {
+  background-image: url(img/sortIcon.png);
+}
 
 .bottom-bar .order.btn-item .tab-icon {
   background-image: url(./img/orderIcon.png);
@@ -46,10 +49,14 @@
   background-image: url(./img/homeIconActive.png);
 }
 
+.bottom-bar .sort.btn-item.active .tab-icon{
+  background-image: url(./img/sortIconActive.png);
+}
+
 .bottom-bar .order.btn-item.active .tab-icon{
   background-image: url(./img/orderIconActive.png);
 }
 
 .bottom-bar .my.btn-item.active .tab-icon{
-  background-image: url(./img/myIconActive.png);
+  background-image: url(img/myIconActive.png);
 }

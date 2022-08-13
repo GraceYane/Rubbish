@@ -3,7 +3,7 @@ server:
 spring:
   application:
     # 应用的名称
-    name: reggie_take_out
+    name: rubbish_take_out
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver

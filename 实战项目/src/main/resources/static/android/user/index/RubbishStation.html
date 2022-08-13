@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>输入提示后查询</title>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: '379c8f0fe2d018fe33c3b8e02c061f79',
+        }
+    </script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=c058db8c51691a61683065bc1c2c3f6b"></script>
+</head>
+<body>
+<div id="container"></div>
+<div id="myPageTop">
+    <table>
+        <tr>
+            <td>
+                <label>请选择距离您最近的：</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="tipinput" value="垃圾站"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    //地图加载
+    var map = new AMap.Map("container", {
+        resizeEnable: true
+    });
+    //输入提示
+    var autoOptions = {
+        input: "tipinput"
+    };
+
+    AMap.plugin(['AMap.PlaceSearch','AMap.AutoComplete'], function(){
+        var auto = new AMap.AutoComplete(autoOptions);
+        auto.search("垃圾站");
+        var placeSearch = new AMap.PlaceSearch({
+            map: map
+        });  //构造地点查询类
+        auto.on("select", select);//注册监听，当选中某条记录时会触发
+        function select(e) {
+            placeSearch.setCity(e.poi.adcode);
+            placeSearch.search(e.poi.name);  //关键字查询查询
+        }
+    });
+</script>
+</body>
+</html>
