@@ -49,7 +49,7 @@
   function getComment (element) {
       return `
         <div class="evaluation clearfix">
-            <button class="evaluation-btn" onclick="getLoc(${element.id})">查看司机当前位置</button>
+            <button class="evaluation-btn" onclick="getLoc(${element.id})">查看司机当前路线</button>
         </div>
       `
   }

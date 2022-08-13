@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,8 +73,11 @@ public class OrderControllerAnd {
 
         if(os.getStatus() == 1) {
             os.setStatus_Str("待运输");
+            // 对日期进行赋空值
+            os.setOverTime(null);
         }else if(os.getStatus() == 2) {
             os.setStatus_Str("运输中");
+            os.setOverTime(null);
         }else if(os.getStatus() == 3) {
             os.setStatus_Str("已完成");
         }else if(os.getStatus() == 4) {
@@ -101,6 +106,13 @@ public class OrderControllerAnd {
         orders o = new orders();
         o.setId(BigInteger.valueOf(id));
         o.setStatus(status + 1);
+        // 如果当前订单已经完成的话则需要设置订单完成的时间
+        if(status + 1 == 3) {
+            Date d = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateNowStr = sdf.format(d);
+            o.setOverTime(dateNowStr);
+        }
         // 进行数据的更新
         os.updateById(o);
         return R.success(true);
