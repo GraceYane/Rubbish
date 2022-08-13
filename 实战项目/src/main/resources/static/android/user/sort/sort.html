@@ -71,7 +71,7 @@
         <el-table size="small"
                   current-row-key="id"
                   :data="tableData"
-                  height=" calc(100vh - 7.15rem)"
+                  height=" calc(100vh - 7.25rem)"
                   highlight-current-row >
             <el-table-column label="序号" type="index" width="50" align="center">
             </el-table-column>
@@ -89,16 +89,50 @@
                 :current-page.sync="currentPage"
                 :page-size="20"
                 :pager-count="5"
-
                 layout="total, prev, pager, next"
                 :total="totalCount"
                 style="height: 1rem;">
         </el-pagination>
 
-        <!--拍照识别按钮-->
-        <div style="text-align: center;height: 1.45rem;">
-            <el-button type="primary" icon="el-icon-camera-solid" style="width: 70%;height: 80%" @click="query" >拍照识别</el-button>
+        <!--拍照上传按钮-->
+        <div style="text-align: center;height: 1.33rem;">
+            <!--<el-button type="primary" icon="el-icon-camera-solid" style="width: 70%;height: 80%" @click="classify" >拍照识别</el-button>-->
+            <el-upload
+                    ref="upload"
+                    class="uploader"
+                    action="/classification"
+                    :on-success="classifySuccess"
+                    :on-error="classifyFail"
+                    :before-upload="beforeUpload"
+                    :accept="'image/*'"
+                    :show-file-list="false"
+                    name="file"
+                    >
+                <el-button type="primary" size="medium"  icon="el-icon-camera-solid" style="width: 200px;height: 1.1rem" @click="classify" >拍照识别</el-button>
+            </el-upload>
         </div>
+
+        <!--识别结果对话框-->
+        <el-dialog title="识别结果" class="classifyDialog" width="280px" :visible.sync="classifyDialogVisible">
+            <el-form  :model="classifyForm">
+                <el-form-item >
+                    <el-image fit="scale-down"  :src="classifyForm.imageUrl">
+                    </el-image>
+                </el-form-item>
+                <el-form-item label="物品名" label-width=60px>
+                    <el-input v-model="classifyForm.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="分类" label-width=60px>
+                    <el-input v-model="classifyForm.sort" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="置信率" label-width=60px>
+                    <el-input v-model="classifyForm.rate" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div   class="dialog-footer">
+                <el-button type="primary" @click="classifyDialogVisible = false">确 定</el-button>
+            </div>
+        </el-dialog>
 
     </div>
 
@@ -124,9 +158,17 @@
                     name:'',
                     sortId:''
                 },
+                classifyForm:{
+                    imageUrl:'',
+                    name:'',
+                    sort:'',
+                    rate:''
+                },
+
                 tableData:[],
                 currentPage:1,
                 totalCount:1000,
+                classifyDialogVisible:false,
             },
             mounted(){
                 this.selectByPage();
@@ -142,6 +184,31 @@
                             console.log(this.tableData);
                             console.log(this.totalCount);
                         }
+                    })
+                },
+                classify(){
+                    // this.$refs.upload().submit();
+                    //
+                    // this.classifyDialogVisible = true;
+                },
+
+                classifySuccess(res, file){
+                    this.classifyForm=res.data;
+
+                    this.classifyForm.imageUrl=URL.createObjectURL(file.raw);
+                    console.log(this.classifyForm);
+                    this.classifyDialogVisible=true;
+                },
+                classifyFail(){
+                    this.$message({
+                        type: 'error',
+                        message: '抱歉，识别次数已超限，识别失败╮(╯▽╰)╭',
+                    })
+                },
+                beforeUpload(){
+                    this.$message({
+                        message: '图片识别中，请稍等╰(￣ω￣ｏ)',
+                        type: 'success'
                     })
                 },
                 query(){

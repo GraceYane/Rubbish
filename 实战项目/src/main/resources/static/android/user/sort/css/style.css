@@ -18,3 +18,16 @@
 .form-inline{
 
 }
+.classifyDialog{
+  margin: 0 auto !important;
+  height: 85%;
+  overflow: hidden;
+}
+
+.el-message{
+  margin-top: 10px;
+}
+
+.el-message .el-message__content {
+  font-size: 12px;
+}
