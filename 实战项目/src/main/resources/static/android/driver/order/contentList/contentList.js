@@ -6,13 +6,21 @@
   function getList () {
     page++;
     isLoading = true;
-    $.get('../json/orders.json', function (data) {
-      console.log(data);
-      var list = data.data.digestlist || [];
+    $.get('/orderAndroid/map', function (data) {
+
+      var list = data.data
 
       initContentList(list);
       isLoading = false;
     });
+
+    /*$.get('../json/orders.json', function (data) {
+
+      var list = data.data.digestlist;
+
+      initContentList(list);
+      isLoading = false;
+    });*/
   }
 
   function initContentList (list) {
@@ -21,14 +29,13 @@
       str += `
       <div class="order-item">
         <div class="order-item-inner">
-          <img class="item-img" src="${element.poi_pic}"/>
+          <img class="item-img" src="https://s1.ax1x.com/2022/08/12/vYDMK1.png"/>
           <div class="item-right">
             <div class="item-top">
-              <p class="order-name one-line">${element.poi_name}</p>
-              <div class="arrow"></div>
-              <div class="order-state">${element.status_description}</div>
+              <p class="order-name one-line">${element.startAddress}→${element.destination}</p>
+              <div class="arrow" onclick="getOrderDetail(${element.id})"></div>
+              <div class="order-state">${element.status_Str}</div>
             </div>
-            <div class="item-bottom">${getProduct(element)}</div>
           </div>
         </div>
         ${getComment(element)}
@@ -39,56 +46,14 @@
     $('.order-list').append($(str));
   }
 
-  function getProduct (data) {
-    var list = data.product_list || [];
-
-    list.push({type: 'more'});
-
-    var str = ``;
-
-    list.forEach(element => {
-      if (element.type === 'more') {
-        str += getTotalPrice(data);
-      } else {
-        str += `
-          <div class="product-item">
-            ${element.product_name}
-            <div class="p-count">x
-              ${element.product_count}
-            </div>
-          </div>
-        `
-      }
-    });
-    return str;
-  }
-
-  function getTotalPrice (data) {
-    var str = `
-      <div class="product-item">
-        <span>...</span>
-        <div class="p-total-count">
-          总计${data.product_count}个菜，实付
-          <span class="total-price">￥${data.total}</span>
-        </div>
-      </div>
-    `
-
-    return str;
-  }
-
-  function getComment (data) {
-    var evaluation = !data.is_comment;
-
-    if (evaluation) {
+  function getComment (element) {
       return `
         <div class="evaluation clearfix">
-          <div class="evaluation-btn">评价</div>
+            <button class="evaluation-btn" onclick="getLoc(${element.id})">查看当前路线规划</button>
         </div>
       `
-    }
-    return '';
   }
+
 
   function addEvent () {
     window.addEventListener('scroll', function () {
@@ -99,7 +64,7 @@
       var preDis = 30;
 
       if (scrollTop + clientHeight + preDis >= scrollHeight) {
-        if (page < 3) {
+        if (page < 1) {
           if (isLoading) {
             return ;
           }

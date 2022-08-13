@@ -38,33 +38,37 @@
     }
     return config
   }, error => {
-    console.log(error)
-    Promise.reject(error)
+      Promise.reject(error)
   })
 
   // 响应拦截器
   service.interceptors.response.use(res => {
-
+      console.log('---响应拦截器---',res)
       if (res.data.code === 0 && res.data.msg === 'NOTLOGIN') {// 返回登录页面
-        console.log('---/backend/page/login/login.html---')
-        localStorage.removeItem('userInfo')
-        window.top.location.href = '/backend/page/login/login.html'
+        window.top.location.href = '/front/page/login.html'
       } else {
         return res.data
       }
     },
     error => {
-      console.log('err' + error)
-      let {message} = error;
+      let { message } = error;
       if (message == "Network Error") {
         message = "后端接口连接异常";
-      } else if (message.includes("timeout")) {
-        message = "系统接口请求超时";
-      } else if (message.includes("Request failed with status code")) {
-        message = "系统接口" + message.substr(message.length - 3) + "异常";
-
       }
+      else if (message.includes("timeout")) {
+        message = "系统接口请求超时";
+      }
+      else if (message.includes("Request failed with status code")) {
+        message = "系统接口" + message.substr(message.length - 3) + "异常";
+      }
+      window.vant.Notify({
+        message: message,
+        type: 'warning',
+        duration: 5 * 1000
+      })
+      //window.top.location.href = '/front/page/no-wify.html'
+      return Promise.reject(error)
     }
   )
-  win.$axios = service
+  win.$axios = service
 })(window);

@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>司机路线</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    html,
+    body,
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+    </style>
+    <style type="text/css">
+        #panel {
+            position: fixed;
+            background-color: white;
+            max-height: 90%;
+            overflow-y: auto;
+            top: 10px;
+            right: 10px;
+            width: 280px;
+        }
+        #panel .amap-call {
+            background-color: #009cf9;
+            border-top-left-radius: 4px;
+   	        border-top-right-radius: 4px;
+        }
+        #panel .amap-lib-driving {
+	        border-bottom-left-radius: 4px;
+   	        border-bottom-right-radius: 4px;
+            overflow: hidden;
+        }
+    </style>
+     <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode:'c928a1008ce2bb51014a3c11744cadb2',
+        }
+    </script>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=0a86e0f018b6232146802f1100762987&plugin=AMap.Driving"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+    <div id="container" style="margin: 0; padding: 0; position: absolute">
+    </div>
+
+    <div id="panel">
+    </div>
+    <div style="margin: 0; padding: 0; position: absolute;">
+        <button type="button" class="btn btn-primary btn-lg" onclick="backMain()">返回主界面</button>
+    </div>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        // 关闭异步，否则会出现拿不到数据的情况
+        $.ajaxSettings.async=false;
+
+        var id = sessionStorage.getItem("id");
+        var longitude, latitude;
+        $.get('/orderAndroid/getById', {id:id}, function (data){
+
+            var orders = data.data
+            longitude = orders.longitude;
+            latitude = orders.latitude;
+        });
+
+        //基本地图加载
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            center: [116.397428, 39.90923],//地图中心点
+            zoom: 13 //地图显示的缩放级别
+        });
+        //构造路线导航类
+        var driving = new AMap.Driving({
+            map: map,
+            // panel: "panel"
+        });
+        // 根据起终点经纬度规划驾车导航路线
+        driving.search(new AMap.LngLat(parseFloat(longitude), parseFloat(latitude)),
+            new AMap.LngLat(113.05023, 34.45345), function(status, result) {
+            // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+            if (status === 'complete') {
+                log.success('绘制驾车路线完成')
+            } else {
+                log.error('获取驾车数据失败：' + result)
+            }
+        });
+    }
+</script>
+</body>
+</html>
+<!-- 底部栏结束 -->
+<script src="../lib/jquery.min.js"></script>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="jquery-3.2.1.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="bootstrap.min.js"></script>
+<script>
+    function backMain() {
+        location.href = "/android/user/order/order.html"
+        // 回显完之后返回的时候移除先前存储的数据
+        sessionStorage.removeItem("id");
+    }
+</script>
