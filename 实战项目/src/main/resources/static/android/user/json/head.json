@@ -1,0 +1,79 @@
+{
+  "data": {
+    "card_list": [],
+    "across_banner_list": [],
+    "primary_filter": [
+
+
+      {
+        "code": 21,
+        "name": "生鲜果蔬",
+        "url": "http://p0.meituan.net/jungle/f33ed552c52b4466b6308a2c14dbc62d4882.png",
+        "gray_url": "http://p0.meituan.net/jungle/f33ed552c52b4466b6308a2c14dbc62d4882.png",
+        "gray_switch": 0,
+        "skip_protocol": "channel?category_type=21&category_text=%E7%94%9F%E9%B2%9C%E6%9E%9C%E8%94%AC",
+        "sequence": 300,
+        "brand_type": -1,
+        "first_tag_codes": [],
+        "second_tag_codes": [],
+        "method": 1691832,
+        "bubble": null
+      },
+      {
+        "code": 20,
+        "name": "美团超市",
+        "url": "http://p0.meituan.net/jungle/6b93ee96be3df7cf2bb6e661280b047d3975.png",
+        "gray_url": "http://p0.meituan.net/jungle/6b93ee96be3df7cf2bb6e661280b047d3975.png",
+        "gray_switch": 0,
+        "skip_protocol": "channel?category_type=20&category_text=%E7%BE%8E%E5%9B%A2%E8%B6%85%E5%B8%82",
+        "sequence": 200,
+        "brand_type": -1,
+        "first_tag_codes": [],
+        "second_tag_codes": [],
+        "method": " function {   window.location.href = 'address.html';}",
+        "bubble": null
+      },
+
+
+      {
+        "code": 100179,
+        "name": "新商家",
+        "url": "http://p1.meituan.net/jungle/d24bda7352a2af54dded09bdf532055b9416.png",
+        "gray_url": "http://p1.meituan.net/jungle/d9fa3bf08f16ab2777172f0ae3be34af6827.png",
+        "gray_switch": 0,
+        "skip_protocol": "channel?category_type=100179&category_text=%E6%96%B0%E5%95%86%E5%AE%B6",
+        "sequence": 1100,
+        "brand_type": -1,
+        "first_tag_codes": [],
+        "second_tag_codes": [],
+        "method": 1691832,
+        "bubble": null
+      },
+
+
+      {
+        "code": 101073,
+        "name": "鲜花蛋糕",
+        "url": "http://p1.meituan.net/jungle/76f6523e25c16df8641717ae1518c0235859.png",
+        "gray_url": "http://p1.meituan.net/jungle/461a24456d08b3078d06b00fa48c479f6639.png",
+        "gray_switch": 0,
+        "skip_protocol": "channel?category_type=101073&category_text=%E9%B2%9C%E8%8A%B1%E8%9B%8B%E7%B3%95",
+        "sequence": 1400,
+        "brand_type": -1,
+        "first_tag_codes": [],
+        "second_tag_codes": [],
+        "method": 1691832,
+        "bubble": null
+      }
+
+    ],
+    "bid_banner_list": [],
+    "friend_feeds": {
+      "logo": "",
+      "feed_list": []
+    },
+    "bubble_max_num": 16
+  },
+  "code": 0,
+  "msg": "成功"
+}
