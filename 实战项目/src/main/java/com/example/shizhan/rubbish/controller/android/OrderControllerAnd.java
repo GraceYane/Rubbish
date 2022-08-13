@@ -1,4 +1,4 @@
-package com.example.shizhan.rubbish.controller.Android;
+package com.example.shizhan.rubbish.controller.android;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.shizhan.rubbish.common.R;
