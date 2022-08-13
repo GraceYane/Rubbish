@@ -4,5 +4,6 @@
 
 .header .header-img {
   width: 100%;
-  height: 4.746667rem;
+  /*height: 4.746667rem;*/
+  height: 100%;
 }
