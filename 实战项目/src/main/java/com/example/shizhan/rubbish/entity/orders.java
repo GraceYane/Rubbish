@@ -50,4 +50,8 @@ public class orders implements Serializable {
     private String longitudeEnd;
 
     private String latitudeEnd;
+
+    private String account;
+
+    private String account1;
 }

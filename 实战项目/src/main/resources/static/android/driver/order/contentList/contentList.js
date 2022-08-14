@@ -6,7 +6,7 @@
   function getList () {
     page++;
     isLoading = true;
-    $.get('/orderAndroid/map', function (data) {
+    $.get('/orderAndroid/map2', function (data) {
 
       var list = data.data
 
