@@ -46,4 +46,8 @@ public class orders implements Serializable {
     private String longitude;
 
     private String latitude;
+
+    private String longitudeEnd;
+
+    private String latitudeEnd;
 }

@@ -52,6 +52,36 @@
             justify-content: space-around;
         }
     </style>
+
+    <style>
+        .el-carousel__item h3 {
+            color: #475669;
+            font-size: 14px;
+            opacity: 0.75;
+            line-height: 150px;
+            margin: 0;
+        }
+
+        .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+        }
+
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #d3dce6;
+        }
+        #h {
+            width: 100%;
+            height: 1.506667rem;
+            background-color: #7ABD9A;
+            border-bottom: 0.4px solid #b2b2b2;
+            font-size: .533333rem;
+            font-family: "楷体";
+            text-align: center;
+            line-height: 1.706667rem;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
 </head>
 
 <script>
@@ -63,7 +93,8 @@
 </script>
 <body>
 <!-- 头部开始 -->
-<header class="header">
+<div id="h">我的首页</div>
+<div id="header" class="header">
     <div class="search-bar">
         <div class="bar-location">
             <div class="location-icon"></div>
@@ -73,8 +104,18 @@
             <p class="place-holder">请输入...</p>
         </div>
     </div>
-    <img class="header-img" src="img/advertising.png" alt="">
-</header>
+<!--    <img class="header-img" src="img/advertising.png" alt="">-->
+    <div class="block">
+          <el-carousel height="170px">
+            <el-carousel-item v-for="item in imgs" :key="item">
+<!--                <h3  class="small">{{ item }}</h3>-->
+                <img id="imgItem" class="header-img" v-bind:src="item" alt="">
+
+            </el-carousel-item>
+        </el-carousel>
+    </div>
+
+</div>
 <!-- 头部结束 -->
 
 <div id="line"><el-divider></el-divider></div>
@@ -83,19 +124,19 @@
 <div id="fa">
     <div >
         <img  style="width:90%;height:90%"  onclick="one()" src="http://p0.meituan.net/jungle/f33ed552c52b4466b6308a2c14dbc62d4882.png">
-        <p style="font-size: 30%">查看附近</p>
+        <p style="font-size: 30%;text-align: center;">查看附近</p>
     </div>
-    <div >
+    <div style="text-align: center" >
         <img  onclick="buy()" style="width:90%;height:90%"  src="http://p0.meituan.net/jungle/6b93ee96be3df7cf2bb6e661280b047d3975.png">
-        <p style="font-size: 30%">上门回收</p>
+        <div style="font-size: 30%;text-align: center;">上门回收</div>
     </div>
-    <div >
-        <img onclick="newk()" style="width:90%;height:90%" src="http://p1.meituan.net/jungle/d24bda7352a2af54dded09bdf532055b9416.png">
-        <p style="font-size: 30%">新知识</p>
+    <div  style="text-align: center" >
+        <img  onclick="newk()" style="width:90%;height:90%" src="http://p1.meituan.net/jungle/d24bda7352a2af54dded09bdf532055b9416.png">
+        <p style="font-size: 30%;text-align: center;">每日一句</p>
     </div>
-    <div>
-        <img onclick="weather()" style="width:90%;height:90%" src="http://p1.meituan.net/jungle/76f6523e25c16df8641717ae1518c0235859.png">
-        <p style="font-size: 30%">实时天气查询</p>
+    <div style="text-align: center">
+        <img onclick="weather()" style="width:90%;height:90%" src="http://p1.meituan.net/jungle/b6033c2f9aa26cdf37ea24fb1346d2dc4690.png">
+        <p style="font-size: 30%;text-align:center">天气查询</p>
     </div>
 </div>
 
@@ -159,5 +200,12 @@
     el: '#line',
     data() {
         return {}}
+})</script>
+<script> new Vue({
+    el: '#header',
+    data() {
+        return {
+            imgs:["img/advertising.png","img/ad2.png","img/ad3.png"]
+        }}
 })</script>
 </html>
