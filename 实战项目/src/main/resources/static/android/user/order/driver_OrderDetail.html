@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+    window.onload = function () {
+        // 进行数据回显的操作
+        var id = sessionStorage.getItem("id");
+        $.get('/orderAndroid/getById', {id:id}, function (data) {
+
+            var orders = data.data
+            $("#disabledTextInput").val(orders.userName)
+            $("#disabledTextInput2").val(orders.userPhone)
+            $("#disabledTextInput3").val(orders.orderTime)
+            $("#disabledTextInput4").val(orders.overTime)
+            $("#disabledTextInput5").val(orders.status_Str)
+            $("#disabledTextInput6").val(orders.remark)
+        });
+    }
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>订单详细信息</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div style="text-align: center"><h3>当前订单信息 <span class="label label-default"></span></h3></div>
+        <form>
+            <fieldset disabled>
+                <div class="form-group">
+                    <label for="disabledTextInput">用户姓名</label>
+                    <input type="text" id="disabledTextInput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">用户电话</label>
+                    <input type="text" id="disabledTextInput2" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">开始时间</label>
+                    <input type="text" id="disabledTextInput3" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">结束时间</label>
+                    <input type="text" id="disabledTextInput4" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">运输状态</label>
+                    <input type="text" id="disabledTextInput5" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">备注信息</label>
+                    <input type="text" id="disabledTextInput6" class="form-control">
+                </div>
+            </fieldset>
+            <div id = "btn1" style="text-align: center">
+                <button type="button" class="btn btn-success" onclick="changeStatus()">修改运输状态</button>
+                <button type="button" class="btn btn-danger" onclick="cancelOrder()">取消当前订单</button>
+                <button type="button" class="btn btn-primary" onclick="backMain()">返回主界面</button>
+            </div>
+        </form>
+</body>
+</html>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="jquery-3.2.1.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="bootstrap.min.js"></script>
+
+<script>
+
+    function changeStatus() {
+        var b = confirm("确定修改订单状态吗？");
+        var id = sessionStorage.getItem("id");
+        if(b) {
+            $.get('/orderAndroid/changeState', {id:id}, function (data) {
+
+                var pd = data.data
+                if(pd) {
+                    // 进行页面的刷新
+                    location.href = "/android/driver/order/driver_OrderDetail.html";
+                }
+
+            });
+        }
+    }
+
+    function cancelOrder() {
+        var b = confirm("确定取消该订单吗？");
+        var id = sessionStorage.getItem("id");
+        if(b) {
+            $.get('/orderAndroid/cancelOrder', {id:id}, function (data) {
+
+                var pd = data.data
+                if(pd) {
+                    // 进行页面的刷新
+                    location.href = "/android/driver/order/driver_OrderDetail.html";
+                }
+
+            });
+        }
+    }
+
+    function backMain() {
+       location.href = "/android/driver/order/order.html"
+        // 回显完之后返回的时候移除先前存储的数据
+        sessionStorage.removeItem("id");
+    }
+
+</script>
