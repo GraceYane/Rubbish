@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">    
+<title>签到</title>
+<link rel="stylesheet" href="css/bootstrap3/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style2.css">
+<link rel="stylesheet" href="css/qiandao_style.css">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 clearPadding">
+			<div class=""><img src="images/qdBanner.png" class="img-responsive"></div>
+			
+			<div class="calendar">
+				<div class="calenbox">
+					<div id="calendar"></div>
+				</div>
+				<!-- <img src="images/qdCanlendar.png" class="img-responsive">
+				<div class="calenbox">
+					<div class="clearfix">
+						<div class="date">1</div>
+						<div class="date">2</div>
+						<div class="date">3</div>
+						<div class="date">4</div>
+						<div class="date">5</div>
+						<div class="date">6</div>
+						<div class="date">7</div>
+					</div>
+					<div class="clearfix">
+						<div class="date">8</div>
+						<div class="date">9</div>
+						<div class="date">10</div>
+						<div class="date">11</div>
+						<div class="date">12</div>
+						<div class="date">13</div>
+						<div class="date">14</div>
+					</div>
+					<div class="clearfix">
+						<div class="date">15</div>
+						<div class="date">16</div>
+						<div class="date">17</div>
+						<div class="date">18</div>
+						<div class="date">19</div>
+						<div class="date">20</div>
+						<div class="date">21</div>
+					</div>
+					<div class="clearfix">
+						<div class="date">22</div>
+						<div class="date">23</div>
+						<div class="date">24</div>
+						<div class="date">25</div>
+						<div class="date">26</div>
+						<div class="date">27</div>
+						<div class="date">28</div>
+					</div>										
+				</div> -->
+				<div class="text-center">
+					<button class="btn btn-qiandao" onclick="signIn()">马上签到</button>
+				</div>
+			</div>
+			<div class="padding10">
+				<div class="font16 pb10 borderb"><strong>连续签到礼包</strong></div>
+				<div class="libaolist">
+					<div class="clearfix borderb ptb10">
+						<div class="col-xs-9 clearPadding">
+							<div class="media">
+								<a class="media-left pt3" href="javascript:void(0);">
+									<img src="images/dou.png" style="width:30px;height:30px;">
+								</a>
+								<div class="media-body">
+									<div class="">5天礼包（200菲亚时尚欢乐豆）</div>
+									<div class="text-muted font12">连续签到5天即可领取</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-3 clearPadding text-right pt2">
+							<button class="btn btn-lingqu">领取</button>
+						</div>
+					</div>
+					<div class="clearfix borderb ptb10">
+						<div class="col-xs-9 clearPadding">
+							<div class="media">
+								<a class="media-left pt3" href="javascript:void(0);">
+									<img src="images/dou.png" style="width:30px;height:30px;">
+								</a>
+								<div class="media-body">
+									<div class="">10天礼包（400菲亚时尚欢乐豆）</div>
+									<div class="text-muted font12">连续签到10天即可领取</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-3 clearPadding text-right pt2">
+							<button class="btn btn-disable" disable>已领取</button>
+						</div>
+					</div>
+					<div class="clearfix borderb ptb10">
+						<div class="col-xs-9 clearPadding">
+							<div class="media">
+								<a class="media-left pt3" href="javascript:void(0);">
+									<img src="images/dou.png" style="width:30px;height:30px;">
+								</a>
+								<div class="media-body">
+									<div class="">15天礼包（800菲亚时尚欢乐豆）</div>
+									<div class="text-muted font12">连续签到15天即可领取</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-3 clearPadding text-right pt2">
+							<button class="btn btn-lingqu">领取</button>
+						</div>
+					</div>		
+					<div class="clearfix borderb ptb10">
+						<div class="col-xs-9 clearPadding">
+							<div class="media">
+								<a class="media-left pt3" href="javascript:void(0);">
+									<img src="images/dou.png" style="width:30px;height:30px;">
+								</a>
+								<div class="media-body">
+									<div class="">20天礼包（1200菲亚时尚欢乐豆）</div>
+									<div class="text-muted font12">连续签到20天即可领取</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-3 clearPadding text-right pt2">
+							<button class="btn btn-lingqu">领取</button>
+						</div>
+					</div>
+					<div class="clearfix borderb ptb10">
+						<div class="col-xs-9 clearPadding">
+							<div class="media">
+								<a class="media-left pt3" href="javascript:void(0);">
+									<img src="images/dou.png" style="width:30px;height:30px;">
+								</a>
+								<div class="media-body">
+									<div class="">25天礼包（1800菲亚时尚欢乐豆）</div>
+									<div class="text-muted font12">连续签到25天即可领取</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-3 clearPadding text-right pt2">
+							<button class="btn btn-lingqu">领取</button>
+						</div>
+					</div>
+					<div class="clearfix borderb ptb10">
+						<div class="col-xs-9 clearPadding">
+							<div class="media">
+								<a class="media-left pt3" href="javascript:void(0);">
+									<img src="images/dou.png" style="width:30px;height:30px;">
+								</a>
+								<div class="media-body">
+									<div class="">30天礼包（3000菲亚时尚欢乐豆）</div>
+									<div class="text-muted font12">连续签到30天即可领取</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-3 clearPadding text-right pt2">
+							<button class="btn btn-lingqu">领取</button>
+						</div>
+					</div>																								
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="maskbox"></div>
+<div class="qdbox">
+	<div class="text-center text-green font18"><strong>签到成功！</strong></div>
+	<div class="text-center pt10">您已经连续签到&nbsp;<span class="text-green">10</span>&nbsp;天</div>
+	<div class="text-center ptb15"><img src="images/gift.png" style="width:125px;margin-left:20px;"></div>
+	<div class="text-center"><button class="btn btn-lottery">去抽奖</button></div>
+</div>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/calendar.js"></script>
+<script>
+function  signIn(){
+	$(".maskbox").fadeIn();
+	$(".qdbox").fadeIn();
+	$(".maskbox").height($(document).height());
+}
+$(".maskbox").click(function(){
+	$(".maskbox").fadeOut();
+	$(".qdbox").fadeOut();
+});
+$(function(){
+  //ajax获取日历json数据
+  var signList=[{"signDay":"10"},{"signDay":"11"},{"signDay":"12"},{"signDay":"13"}];
+   calUtil.init(signList);
+});
+</script>
+</body>
+</html>
