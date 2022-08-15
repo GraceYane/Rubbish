@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-  <title>我的</title>
+  <title>崔博阳牛逼</title>
   <script>
+
+
     (function () {
       var docEl = document.documentElement;
 
@@ -37,12 +39,12 @@
   <div class="my">
     <div class="header">
       <img class="avatar" src="https://i.waimai.meituan.com/static/img/default-avatar.png" alt="">
-      <p class="nickname">美团小骑手 &gt;</p>
+      <p class="nickname">垃圾司机师傅 &gt;</p>
     </div>
     <div class="content">
       <ul class="items">
-        <li class="address">收货地址管理</li>
-        <li class="money">商家代金券</li>
+        <li class="address" onclick="information()">司机个人信息管理</li>
+<!--        <li class="money">商家代金券</li>-->
       </ul>
       <ul class="items">
         <li class="email">意见反馈</li>
@@ -57,6 +59,23 @@
   <div class="bottom-bar"></div>
   <!-- 底部栏结束 -->
   <script src="../lib/jquery.min.js"></script>
+  <script src="./../js/request.js"></script>
   <script src="../common/bottomBar/bottomBar.js"></script>
+  <script>
+    // new Vue({
+    //   el:"#my",
+    //   mouted(){},
+    //   methods:{
+    //     toAddinformation(){
+    //       window.requestAnimationFrame(()=>{
+    //         window.location.href = '/front/page/address.html'
+    //       })
+    //     }
+    //   }
+    // })
+    function information(){
+      ifr.src = "address.html"
+    }
+  </script>
 </body>
 </html>

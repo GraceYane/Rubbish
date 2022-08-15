@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no,minimal-ui">
-        <title>菩提阁</title>
-        <link rel="icon" href="./../images/favico.ico">
+        <title>新增收获地址</title>
+        <link rel="icon" href="./../images/login-logo.png">
         <!--不同屏幕尺寸根字体设置-->
         <script src="./../js/base.js"></script>
         <!--element-ui的样式-->
@@ -92,6 +92,9 @@
                 mounted(){
                 },
                 methods:{
+                    test() {
+
+                    },
                     goBack(){
                         window.location.href='index.html';
 
@@ -132,12 +135,13 @@
                         let res= {}
 
                         //此处为yy的代码
-                        await submitApi(this.form)
+                        // await submitApi(this.form)
                         //
 
                         if(this.id){
                             res = await updateAddressApi(this.form)
                         }else{
+                            alert("ifelse提交了")
                             res = await addAddressApi(this.form)
                         }
                         

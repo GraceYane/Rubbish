@@ -1,0 +1,56 @@
+﻿/*****购物车*********/
+.gwc1{ width:100%;overflow:hidden; padding-bottom:100px;}
+.gwc_tb1{ width:100%; border-top:1px solid #fff; background:#757575; height:40px; top:0px; position:fixed; z-index:99999;  color:#fff;}
+.tb1_td1{ width:10%; text-align:center;}
+.tb1_td3{ width:20%; text-align:center; background:url(../images/td1.jpg) right no-repeat;}
+.tb1_td4{ width:20%; text-align:center; background:url(../images/td1.jpg) right no-repeat;}
+.tb1_td5{ width:20%; text-align:center; background:url(../images/td1.jpg) right no-repeat;}
+.tb1_td6{ width:20%; text-align:center; background:url(../images/td1.jpg) right no-repeat;}
+.tb1_td7{ text-align:center; width:10%}
+
+
+.gwc_tb2{ width:100%; margin-top:5px;  border:1px solid #e5e5e5; padding-top:10px; padding-bottom:10px; font-size:13px; color:#333}
+.tb2_td1{ width:10%; text-align:center;}
+.tb2_td2{ width:10%; text-align:center;}
+.tb2_td2 img{ width:96px; height:96px; border:2px solid #c9c6c7;}
+.tb2_td3{ width:20%$; padding-left:12px; padding-right:18px;}
+.tb2_td3 a{ font-size:14px; line-height:22px;}
+
+.gwc_tb3{ width:100%; border:1px solid #d2d2d2; background:#e7e7e7; height:46px; margin-top:20px; bottom:60px; position:fixed; z-index:99999 }
+.gwc_tb3 tr td{font-size:14px;}
+.tb3_td2{ width:100px;text-align:center;}
+.tb3_td2 span{ color:#ff5500;font-size:14px; font-weight:bold; padding-left:5px; padding-right:5px; }
+.tb3_td3{ width:220px;text-align:center;}
+.tb3_td3 span{ font-size:18px; font-weight:bold;}
+.tb3_td4{ width:110px;text-align:center;}
+.jz2{ width:100px; height:46px; line-height:46px; text-align:center; font-size:18px; color:#fff; background:#757575; display:block; float:right;}
+#jz1{font-size:18px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
