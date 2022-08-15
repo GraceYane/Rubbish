@@ -4,14 +4,15 @@ import java.io.Serializable;
 
 public class Driver implements Serializable {
     private Long id;
-
     private String name;
-
     private String phone;
-
     private String carNumber;
-
     private String address;
+    private String password;
+    private String username;
+    private String updateTime;
+
+
 
     //出勤状态
     private int status;
@@ -62,6 +63,29 @@ public class Driver implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String uptadeTime) {
+        this.updateTime = uptadeTime;
     }
 
     @Override

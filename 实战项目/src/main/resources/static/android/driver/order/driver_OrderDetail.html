@@ -8,10 +8,11 @@
 
             var orders = data.data
             $("#disabledTextInput").val(orders.userName)
-            $("#disabledTextInput2").val(orders.driverPhone)
+            $("#disabledTextInput2").val(orders.userPhone)
             $("#disabledTextInput3").val(orders.orderTime)
             $("#disabledTextInput4").val(orders.overTime)
             $("#disabledTextInput5").val(orders.status_Str)
+            $("#disabledTextInput6").val(orders.remark)
         });
     }
 </script>
@@ -34,7 +35,7 @@
                     <input type="text" id="disabledTextInput" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="disabledTextInput">司机电话</label>
+                    <label for="disabledTextInput">用户电话</label>
                     <input type="text" id="disabledTextInput2" class="form-control">
                 </div>
                 <div class="form-group">
@@ -48,6 +49,10 @@
                 <div class="form-group">
                     <label for="disabledTextInput">运输状态</label>
                     <input type="text" id="disabledTextInput5" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="disabledTextInput">备注信息</label>
+                    <input type="text" id="disabledTextInput6" class="form-control">
                 </div>
             </fieldset>
             <div id = "btn1" style="text-align: center">

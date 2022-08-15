@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>3D地图</title>
+    <style>
+        body,html{ margin:0;padding:0;font:12px/16px Verdana,Helvetica,Arial,sans-serif;width: 100%;height: 100%}
+        .container{
+            height: 100%
+        }
+    </style>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: '379c8f0fe2d018fe33c3b8e02c061f79',
+        }
+    </script>
+    <script language="javascript" src="//webapi.amap.com/maps?v=2.0&key=c058db8c51691a61683065bc1c2c3f6b&plugin=AMap.ControlBar,AMap.ToolBar"></script>
+</head>
+<body >
+<div id="container" style="width:100%; height:100%;resize:both;"></div>
+<script language="javascript">
+    var map;
+    function mapInit(){
+        map = new AMap.Map('container', {
+            rotateEnable:true,
+            pitchEnable:true,
+            zoom: 17,
+            pitch: 50,
+            rotation: -15,
+            viewMode:'3D', //开启3D视图,默认为关闭
+            zooms:[2,20],
+            center:[116.333926,39.997245]
+        });
+
+        var controlBar = new AMap.ControlBar({
+            position:{
+                right:'10px',
+                top:'10px'
+            }
+        });
+        controlBar.addTo(map);
+
+        var toolBar = new AMap.ToolBar({
+            position:{
+                right:'40px',
+                top:'110px'
+            }
+        });
+        toolBar.addTo(map);
+    }
+    mapInit()
+</script>
+</body>
+</html>
