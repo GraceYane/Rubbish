@@ -95,6 +95,7 @@ public class    EmployeeController {
         employee.setUpdateTime(LocalDateTime.now());
         Long empId = (Long)request.getSession().getAttribute("employee");
         employee.setCreateUser(empId);
+        employee.setStatus(1);
         //employee.setPassword("1234");
         employee.setUpdateUser(empId);
         employee.setCreateUser(empId);

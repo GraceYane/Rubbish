@@ -31,7 +31,9 @@
 </head>
 <body>
 <div id="app" style="width: 80%"   class="login">
-  <h2>登陆\注册</h2>
+
+  <h2>司机登陆</h2>
+
   <div  class="login_form">
     <div >
       <span >账号：</span>
@@ -66,7 +68,9 @@
           //请求类型
           method: 'POST',
           //URL
-          url: 'http://localhost:8080/driver/login',
+
+          url: 'http://47.93.11.183:8080/driver/login',
+
           //设置参数
           data:{
             username:this.loginInfo.userName,

@@ -17,7 +17,7 @@
 }
 
 .nickname {
-  color: #333;
+  color: white;
   font-size: .426667rem;
   text-align: center;
   margin-top: .4rem;
@@ -55,7 +55,7 @@
 }
 
 .address::before {
-  background-image: url(./img/address.png);
+  background-image: url(./img/driver.png);
 }
 
 .money::before {
@@ -78,12 +78,12 @@
   position: absolute;
   top: 0rem;
   right: .16rem;
-  color: #aaa;
+  color: #7ABD9A;
 }
 
 .tel {
   font-size: .4rem;
-  color: #ffb000;
+  color: #7ABD9A;
   text-align: center;
   line-height: 1.226667rem;
   height: 1.226667rem;
@@ -93,7 +93,7 @@
 .time {
   font-size: .373333rem;
   margin-top: .346667rem;
-  color: #999;
+  color: #7ABD9A;
   text-align: center;
   line-height: 1.226667rem;
   height: 1.226667rem;
