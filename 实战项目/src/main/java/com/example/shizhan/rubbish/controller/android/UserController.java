@@ -34,7 +34,10 @@ public class UserController {
         //设置查询条件， 采用Username等值查询
         queryWrapper.eq(User::getUsername,user.getUsername());
         //根据查询条件进行查询，如果查到了返回对象给one，没查到的话 one=null
-        User one = userService.getOne(queryWrapper);
+
+        User one = null;
+        one = userService.getOne(queryWrapper);
+
         if(one==null){
             return R.error("登录失败");
         }
@@ -44,7 +47,9 @@ public class UserController {
         if(one.getStatus()==0){
             return R.error("账号禁用");
         }
-        request.getSession().setAttribute("userName",one.getUsername());
+
+        request.getSession().setAttribute("username",one.getUsername());
+
         return R.success(one);
     }
     @PostMapping("/register")
@@ -52,8 +57,7 @@ public class UserController {
         //通过post请求访问这个路径，参数data是一个json形式，需要带上注解
         user.setId(BigInteger.valueOf((long) (Math.random()*100)));
         userService.save(user);
-        // 使用账号作为唯一身份识别
-        request.getSession().setAttribute("userName",user.getUsername());
+        request.getSession().setAttribute("username",user.getUsername());
         return R.success(user);
     }
 
