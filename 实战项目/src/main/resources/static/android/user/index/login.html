@@ -73,12 +73,13 @@
             password:this.loginInfo.password
           },
         }).then(response => {
-          if(response.data.code === 1)
-              window.location.href = "index.html";
+
+          if(response.data.code == "1")
+              window.location.href = 'index.html';
         });
       },
       register(){
-        window.location.href = "register.html";
+        window.location.href = 'register.html';
       }
     }
 
