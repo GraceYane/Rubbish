@@ -34,11 +34,6 @@
       sessionStorage.setItem("id", id);
       location.href = "/android/user/order/orderDetail.html";
     }
-    // 查看司机当前的位置
-    function getLoc(id) {
-      sessionStorage.setItem("id", id);
-      location.href = "/android/user/order/map.html"
-    }
 
   </script>
   <link rel="stylesheet" href="../lib/reset.css">
@@ -48,7 +43,7 @@
 </head>
 <body>
   <!-- 头部开始 -->
-  <header class="header">垃圾订单明细</header>
+  <header class="header" style="color: white">垃圾订单明细</header>
   <!-- 头部结束 -->
 
   <!-- 订单列表开始 -->
@@ -58,7 +53,7 @@
   </div>
   <!-- 订单列表结束 -->
 
-  <!-- 底部栏开始 -->
+  <!-- 底部栏开始- -->
   <div class="bottom-bar"></div>
   <!-- 底部栏结束 -->
   <script src="../lib/jquery.min.js"></script>

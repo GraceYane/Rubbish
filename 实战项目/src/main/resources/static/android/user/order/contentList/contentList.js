@@ -6,7 +6,7 @@
   function getList () {
     page++;
     isLoading = true;
-    $.get('/orderAndroid/map', function (data) {
+    $.get('/orderAndroid/map1', function (data) {
 
       var list = data.data
 
@@ -33,7 +33,6 @@
           <div class="item-right">
             <div class="item-top">
               <p class="order-name one-line">${element.startAddress}→${element.destination}</p>
-              <div class="arrow" onclick="getOrderDetail(${element.id})"></div>
               <div class="order-state">${element.status_Str}</div>
             </div>
           </div>
@@ -49,7 +48,7 @@
   function getComment (element) {
       return `
         <div class="evaluation clearfix">
-            <button class="evaluation-btn" onclick="getLoc(${element.id})">查看司机当前位置</button>
+            <button class="evaluation-btn" onclick="getOrderDetail(${element.id})">查看订单详细信息</button>
         </div>
       `
   }

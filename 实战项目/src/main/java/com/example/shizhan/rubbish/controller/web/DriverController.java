@@ -4,12 +4,17 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.shizhan.rubbish.entity.Driver;
 import com.example.shizhan.rubbish.common.R;
+import com.example.shizhan.rubbish.entity.User;
 import com.example.shizhan.rubbish.mapper.DriverMapper;
 import com.example.shizhan.rubbish.service.Interface.DriverService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -31,10 +36,12 @@ public class DriverController {
      * @return
      */
     @PostMapping
-    public R<String> save(@RequestBody Driver driver){
-
+    public R<String> save(HttpServletRequest request, @RequestBody Driver driver){
+        driver.setId(((long) (Math.random()*100)));
+        driver.setUpdateTime(LocalDateTime.now().toString());
         System.out.println(driver);
         driverService.save(driver);
+        request.getSession().setAttribute("username",driver.getUsername());
         return null;
     }
 
@@ -66,6 +73,33 @@ public class DriverController {
 
 
         return R.success(pageInfo);
+    }
+
+    /**
+     * 司机登录by yy
+     */
+    @PostMapping("/login")
+    public R<Driver> login(HttpServletRequest request,@RequestBody Driver driver){
+        String password = driver.getPassword();
+
+        // 根据页面提交的用户名查询数据库,queryWrapper里边放置查询条件和查询的id
+        LambdaQueryWrapper<Driver> queryWrapper = new LambdaQueryWrapper<>();
+        //设置查询条件， 采用Username等值查询
+        queryWrapper.eq(Driver::getUsername,driver.getUsername());
+        //根据查询条件进行查询，如果查到了返回对象给one，没查到的话 one=null
+        Driver one = null;
+        one = driverService.getOne(queryWrapper);
+        if(one==null){
+            return R.error("登录失败");
+        }
+        if(!one.getPassword().equals((password))){
+            return R.error("登录失败");
+        }
+        if(one.getStatus()==0){
+            return R.error("账号禁用");
+        }
+        request.getSession().setAttribute("username",one.getUsername());
+        return R.success(one);
     }
 }
 
