@@ -56,6 +56,7 @@ public class UserController {
     public R<User> register(HttpServletRequest request,@RequestBody User user){
         //通过post请求访问这个路径，参数data是一个json形式，需要带上注解
         user.setId(BigInteger.valueOf((long) (Math.random()*100)));
+
         user.setStatus(1);
         userService.save(user);
 
