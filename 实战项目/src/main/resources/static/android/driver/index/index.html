@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <!-- 引入vue内库 -->
+  <script src="https://cdn.bootcss.com/vue/2.5.20/vue.min.js"></script>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+  <title>首页</title>
+  <script>
+    (function () {
+      var docEl = document.documentElement;
+
+      function setRemUnit () {
+        // 获取到rem的基准值
+        var rem = docEl.clientWidth / 10;
+
+        // 动态设置html根元素的fontSize
+        docEl.style.fontSize = rem + 'px';
+      }
+
+      setRemUnit();
+
+      // 窗口大小变化时 触发
+      window.addEventListener('resize', setRemUnit);
+
+      // 窗口出现在当前屏幕时
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          setRemUnit();
+        }
+      });
+    })();
+  </script>
+  <link rel="stylesheet" href="../lib/reset.css">
+  <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+  <style>
+    #header {
+      width: 90%;
+      height: 1.506667rem;
+      background-color: #7ABD9A;
+      border-bottom: 0.4px solid #b2b2b2;
+      font-size: .533333rem;
+      font-family: "楷体";
+      text-align: center;
+      line-height: 1.706667rem;
+      font-weight: bold;
+
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部开始 -->
+  <div style="display: flex">
+    <header id="header" style="color:white">地图首页</header>
+    <button style="border:1px;color: white; background-color:#7db799; font-size:.303333rem;font-family: 楷体" onclick="change()">
+      切换
+    </button>
+  </div>
+
+  <div class="list-content" id="list">
+    <!--        将iframe的src设为一个变量-->
+    <iframe  id="ifr" src="around.html"  height="700dp" width="500dp">
+    </iframe>
+  </div>
+
+  <!-- 底部栏开始 -->
+  <div class="bottom-bar"></div>
+  <!-- 底部栏结束 -->
+  <script src="../lib/jquery.min.js"></script>
+  <script src="../common/bottomBar/bottomBar.js"></script>
+</body>
+<script>
+  function change(){
+    if(ifr.src.search("3d")!=-1)
+         ifr.src = "around.html";
+    else
+      ifr.src = "around3d.html";
+  }
+</script>
+<script>
+  new Vue({
+    el: '#list',
+    data() {
+      return {
+        iframeUrl: 'https://www.bilibili.com/'
+
+      }
+    },
+    method:{
+      RubbishStation:function(){
+        this.iframeUrl = 'RubbishStation.html'
+      }
+    }
+  })
+</script>
+
+</html>

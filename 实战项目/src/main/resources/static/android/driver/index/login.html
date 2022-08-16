@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 引入vue内库 -->
+  <script src="https://cdn.bootcss.com/vue/2.5.20/vue.min.js"></script>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+  <title>登陆页面</title>
+  <style>
+    #header {
+      width: 100%;
+      height: 2.506667rem;
+      background-color: #9cd7b8;
+      border-bottom: 0.4px solid #b2b2b2;
+      font-size: .533333rem;
+      font-family: "楷体";
+      text-align: center;
+      line-height: 1.706667rem;
+      font-weight: bold;
+
+    }
+  </style>
+  <!-- author xjt -->
+</head>
+<body>
+<div id="app" style="width: 80%"   class="login">
+  <h2>司机登陆</h2>
+  <div  class="login_form">
+    <div >
+      <span >账号：</span>
+      <input v-model="loginInfo.userName" type="text" placeholder="请输入账号">
+    </div>
+    <br>
+    <div >
+      <span>密码：</span>
+      <input v-model="loginInfo.password" type="password" placeholder="请输入密码">
+    </div>
+  </div>
+  <div class="btn">
+    <button class="login_btn" v-on:click="login" >登 &nbsp;&nbsp;&nbsp;录</button>
+    <button class="login_btn" v-on:click="register" >注 &nbsp;&nbsp;&nbsp;册</button>
+  </div>
+</div>
+</body>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        loginInfo:{
+          userName:"",
+          password:""
+        }
+      }
+    },
+    methods:{
+      login(){
+        axios({
+          //请求类型
+          method: 'POST',
+          //URL
+          url: 'http://47.93.11.183:8080/driver/login',
+          //设置参数
+          data:{
+            username:this.loginInfo.userName,
+            password:this.loginInfo.password
+          },
+        }).then(response => {
+          if(response.data.code == "1")
+              window.location.href = 'index.html';
+        });
+      },
+      register(){
+        window.location.href = 'register.html';
+      }
+    }
+
+  })
+</script>
+<style>
+  body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(#75b293 0%, #75b293 100%);
+    background-size: cover;
+    flex: 1;
+    align-items: center;
+  }
+  .login{
+    text-align: center;
+    margin-top: 120px;
+    width: 600px;
+    height: 380px;
+    background-color: rgba(87, 86, 86, 0.2);
+    border-radius: 25px;
+    box-shadow: 5px 2px 35px -7px #ff9a9e;
+  }
+  .login h2{
+    margin-top: 40px;
+    color: aliceblue;
+    font-weight: 100;
+  }
+  .login_form{
+    padding: 40px 40px ;
+  }
+  .login_form span{
+    color: rgb(131, 220, 255);
+    font-size: 18px;
+    font-weight: 100;
+  }
+  .login_form input{
+    background-color: transparent;
+    width: 84px;
+    padding: 2px;
+    text-indent: 1px;
+    color: white;
+    font-size: 20px;
+    height: 45px;
+    margin: 0px 0px 0px 0px;
+    outline: none;
+    border: 0px;
+    border-bottom: 1px solid rgb(131, 220, 255);
+  }
+  input::placeholder{
+    color: #fbc2eb;
+    font-weight: 100;
+    font-size: 18px;
+    font-style: italic;
+  }
+  .login_btn{
+    background-color: rgba(255, 255, 255, 0.582);
+    border: 1px solid rgb(190, 225, 255);
+    padding: 7px;
+    width: 100px;
+    height: 38px;
+    border-radius: 30px;
+    font-size: 16px;
+    color: rgb(100, 183, 255);
+    font-weight: 100;
+    margin-top: 11px;
+  }
+  .login_btn:hover{
+    box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+    background-color: transparent;
+    color: white;
+    /* 选择动画 */
+    animation: login_mation 0.5s;
+  }
+
+  /* 定义动画 */
+  @keyframes login_mation
+  {
+    from {
+      background-color: rgba(255, 255, 255, 0.582);
+      box-shadow: 0px 0px 15px 2px rgb(190, 225, 255);
+    }
+    to {
+      background-color: transparent;
+      color: white;
+      box-shadow: 2px 2px 15px 2px rgb(190, 225, 255);
+    }
+  }
+</style>
+
+</html>
+

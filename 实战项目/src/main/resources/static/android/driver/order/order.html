@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <title>垃圾订单明细</title>
+  <!--<script>
+    !function () {
+      // 添加事件监听
+      document.addEventListener('visibilitychange', function () {
+        let pageVisibility = document.visibilityState
+        // 页面变为不可见时触发
+        if (pageVisibility === 'hidden') {
+          document.title = '主人，你去哪儿了？'
+        }
+        // 页面变为可见时触发
+        if (pageVisibility === 'visible') {
+          document.title = '主人，你终于回来了！'
+        }
+      })
+    }()
+  </script>-->
+  <script>
+    (function () {
+      var docEl = document.documentElement;
+
+      function setRemUnit () {
+        // 获取到rem的基准值
+        var rem = docEl.clientWidth / 10;
+
+        // 动态设置html根元素的fontSize
+        docEl.style.fontSize = rem + 'px';
+      }
+
+      setRemUnit();
+
+      // 窗口大小变化时 触发
+      window.addEventListener('resize', setRemUnit);
+
+      // 窗口出现在当前屏幕时
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          setRemUnit();
+        }
+      });
+    })();
+
+    // 查看订单的详细信息
+    function getOrderDetail(id) {
+      sessionStorage.setItem("id", id);
+      location.href = "/android/driver/order/driver_OrderDetail.html";
+    }
+    // 规划当前路线
+    function getLoc(id) {
+      sessionStorage.setItem("id", id);
+      // 关闭异步的操作
+      $.ajaxSettings.async=false;
+      var longitude, latitude, longitudeEnd, latitudeEnd;
+      $.get('/orderAndroid/getById', {id:id}, function (data) {
+        var orders = data.data;
+        // 得到数据进行赋值
+        longitude = orders.longitude;
+        latitude = orders.latitude;
+
+        longitudeEnd = orders.longitudeEnd;
+        latitudeEnd = orders.latitudeEnd;
+      });
+      // 进行页面的跳转并进行路线的规划
+      location.href = "//uri.amap.com/navigation?from=" + longitude + "," + latitude + ",startpoint&to=" + longitudeEnd + "," + latitudeEnd + ",endpoint&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0"
+    }
+
+  </script>
+  <link rel="stylesheet" href="../lib/reset.css">
+  <link rel="stylesheet" href="./header/header.css">
+  <link rel="stylesheet" href="./contentList/contentList.css">
+  <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+</head>
+<body>
+  <!-- 头部开始 -->
+  <header class="header" style="color:white">垃圾订单明细</header>
+  <!-- 头部结束 -->
+
+  <!-- 订单列表开始 --->
+  <div class="wrap">
+    <div class="order-list"></div>
+    <div class="loading">加载中</div>
+  </div>
+  <!-- 订单列表结束-- -->
+
+  <!-- 底部栏开始 -->
+  <div class="bottom-bar"></div>
+  <!-- 底部栏结束 -->
+  <script src="../lib/jquery.min.js"></script>
+  <script src="./contentList/contentList.js"></script>
+  <script src="../common/bottomBar/bottomBar.js"></script>
+</body>
+</html>

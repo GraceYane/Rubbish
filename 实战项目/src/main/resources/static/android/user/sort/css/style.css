@@ -1,0 +1,34 @@
+.header {
+  width: 100%;
+  height: 1.506667rem;
+  background-color:#7ABD9A;
+  border-bottom: 0.4px solid #b2b2b2;
+  font-size: .533333rem;
+  font-family: "楷体";
+  text-align: center;
+  line-height: 1.706667rem;
+  font-weight: bold;
+}
+
+.search-form{
+  text-align: center;
+  margin-top: 10px;
+  height: 1.2rem;
+}
+
+.form-inline{
+
+}
+.classifyDialog{
+  margin: 0 auto !important;
+  height: 85%;
+  overflow: hidden;
+}
+
+.el-message{
+  margin-top: 10px;
+}
+
+.el-message .el-message__content {
+  font-size: 12px;
+}

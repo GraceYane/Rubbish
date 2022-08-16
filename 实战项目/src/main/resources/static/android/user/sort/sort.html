@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <title>垃圾分类</title>
+    <link rel="shortcut icon" href="../../../backend/favicon.ico">
+    <script>
+        (function () {
+            var docEl = document.documentElement;
+
+            function setRemUnit () {
+                // 获取到rem的基准值
+                var rem = docEl.clientWidth / 10;
+
+                // 动态设置html根元素的fontSize
+                docEl.style.fontSize = rem + 'px';
+            }
+            setRemUnit();
+
+            // 窗口大小变化时 触发
+            window.addEventListener('resize', setRemUnit);
+
+            // 窗口出现在当前屏幕时
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) {
+                    setRemUnit();
+                }
+            });
+        })();
+    </script>
+    <link rel="stylesheet" href="../lib/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+    <!--element-ui的样式-->
+    <link rel="stylesheet" href="../../../backend/plugins/element-ui/index.css" />
+
+</head>
+</head>
+<body>
+
+    <!-- 头部开始 -->
+    <header class="header" style="color: white">垃圾分类</header>
+    <!-- 头部结束 -->
+
+    <div id="sort" >
+
+        <!-- 查询表单 -->
+        <div  class="search-form">
+            <el-form :inline="true" :model="formInline" size="small" class="form-inline">
+                <el-form-item label="">
+                    <el-input  v-model="formInline.name" style="width:90px" placeholder="物品名称"></el-input>
+                </el-form-item>
+                <el-form-item label="">
+                    <el-select v-model="formInline.sortId" style="width: 108px" placeholder="垃圾类别">
+                        <el-option label="所有垃圾" value=""></el-option>
+                        <el-option label="可回收垃圾" value="1"></el-option>
+                        <el-option label="有害垃圾" value="2"></el-option>
+                        <el-option label="湿垃圾" value="3"></el-option>
+                        <el-option label="干垃圾" value="4"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" icon="el-icon-search" circle @click="query"></el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+
+        <!--垃圾分类表-->
+        <el-table size="small"
+                  current-row-key="id"
+                  :data="tableData"
+                  height=" calc(100vh - 7.25rem)"
+                  highlight-current-row >
+            <el-table-column label="序号" type="index" width="50" align="center">
+            </el-table-column>
+            <el-table-column prop="name" label="物品名" align="center">
+            </el-table-column>
+
+            <el-table-column prop="sort" label="所属垃圾类别" align="center">
+            </el-table-column>
+        </el-table>
+
+        <!--分页工具条-->
+        <el-pagination
+                small
+                @current-change="handleCurrentChange"
+                :current-page.sync="currentPage"
+                :page-size="20"
+                :pager-count="5"
+                layout="total, prev, pager, next"
+                :total="totalCount"
+                style="height: 1rem;">
+        </el-pagination>
+
+        <!--拍照上传按钮-->
+        <div style="text-align: center;height: 1.33rem;">
+            <!--<el-button type="primary" icon="el-icon-camera-solid" style="width: 70%;height: 80%" @click="classify" >拍照识别</el-button>-->
+            <el-upload
+                    ref="upload"
+                    class="uploader"
+                    action="/classification"
+                    :on-success="classifySuccess"
+                    :on-error="classifyFail"
+                    :before-upload="beforeUpload"
+                    :accept="'image/*'"
+                    :show-file-list="false"
+                    name="file"
+                    >
+                <el-button type="primary" size="medium"  icon="el-icon-camera-solid" style="width: 200px;height: 1.1rem" @click="classify" >拍照识别</el-button>
+            </el-upload>
+        </div>
+
+        <!--识别结果对话框-->
+        <el-dialog title="识别结果" class="classifyDialog" width="280px" :visible.sync="classifyDialogVisible">
+            <el-form  :model="classifyForm">
+                <el-form-item >
+                    <el-image fit="scale-down"  :src="classifyForm.imageUrl">
+                    </el-image>
+                </el-form-item>
+                <el-form-item label="物品名" label-width=60px>
+                    <el-input v-model="classifyForm.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="分类" label-width=60px>
+                    <el-input v-model="classifyForm.sort" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="置信率" label-width=60px>
+                    <el-input v-model="classifyForm.rate" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div   class="dialog-footer">
+                <el-button type="primary" @click="classifyDialogVisible = false">确 定</el-button>
+            </div>
+        </el-dialog>
+
+    </div>
+
+
+    <!-- 底部栏开始 -->
+    <div class="bottom-bar"></div>
+    <!-- 底部栏结束 -->
+
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../common/bottomBar/bottomBar.js"></script>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="../../../backend/plugins/vue/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="../../../backend/plugins/element-ui/index.js"></script>
+    <!-- 引入axios -->
+    <script src="../../../backend/plugins/axios/axios.min.js"></script>
+
+    <script>
+        new Vue({
+            el:'#sort',
+            data:{
+                formInline:{
+                    name:'',
+                    sortId:''
+                },
+                classifyForm:{
+                    imageUrl:'',
+                    name:'',
+                    sort:'',
+                    rate:''
+                },
+
+                tableData:[],
+                currentPage:1,
+                totalCount:1000,
+                classifyDialogVisible:false,
+            },
+            mounted(){
+                this.selectByPage();
+            },
+            methods:{
+                selectByPage(){
+                    axios.get("/classification?page="+this.currentPage+"&sortId="+this.formInline.sortId+"&name="+this.formInline.name).then(res=>{
+                        console.log(res.data);
+                        console.log(res.data.code);
+                        if (res.data.code=='1') {
+                            this.tableData = res.data.data.records || []
+                            this.totalCount = res.data.data.total
+                            console.log(this.tableData);
+                            console.log(this.totalCount);
+                        }
+                    })
+                },
+                classify(){
+                    // this.$refs.upload().submit();
+                    //
+                    // this.classifyDialogVisible = true;
+                },
+
+                classifySuccess(res, file){
+                    this.classifyForm=res.data;
+
+                    this.classifyForm.imageUrl=URL.createObjectURL(file.raw);
+                    console.log(this.classifyForm);
+                    this.classifyDialogVisible=true;
+                },
+                classifyFail(){
+                    this.$message({
+                        type: 'error',
+                        message: '抱歉，识别次数已超限，识别失败╮(╯▽╰)╭',
+                    })
+                },
+                beforeUpload(){
+                    this.$message({
+                        message: '图片识别中，请稍等╰(￣ω￣ｏ)',
+                        type: 'success'
+                    })
+                },
+                query(){
+                    this.currentPage=1;
+                    this.selectByPage();
+                },
+                handleCurrentChange(val) {
+                    this.currentPage=val;
+                    this.selectByPage();
+                    console.log(`当前页: ${val}`);
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

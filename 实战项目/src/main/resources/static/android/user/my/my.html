@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <title>我的</title>
+  <script>
+    (function () {
+      var docEl = document.documentElement;
+
+      function setRemUnit () {
+        // 获取到rem的基准值
+        var rem = docEl.clientWidth / 10;
+
+        // 动态设置html根元素的fontSize
+        docEl.style.fontSize = rem + 'px';
+      }
+
+      setRemUnit();
+
+      // 窗口大小变化时 触发
+      window.addEventListener('resize', setRemUnit);
+
+      // 窗口出现在当前屏幕时
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          setRemUnit();
+        }
+      });
+    })();
+  </script>
+  <link rel="stylesheet" href="../lib/reset.css">
+  <link rel="stylesheet" href="./my.css">
+  <link rel="stylesheet" href="../common/bottomBar/bottomBar.css">
+  <style>
+    #h {
+      width: 100%;
+      height: 1.506667rem;
+      background-color: #7ABD9A;
+      border-bottom: 0.4px solid #b2b2b2;
+      font-size: .533333rem;
+      font-family: "楷体";
+      text-align: center;
+      line-height: 1.706667rem;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div id="h">我的主页</div>
+  <div class="my">
+
+    <div class="header">
+      <img class="avatar" src="https://i.waimai.meituan.com/static/img/default-avatar.png" alt="">
+      <p class="nickname">用户个人 &gt;</p>
+    </div>
+    <div class="content">
+      <ul class="items">
+        <a href="../../../front/page/address.html" target="_self"><li class="address">收货地址管理</li></a>
+        <a href="jifen.html"><li class="money">积分商城</li></a>
+      </ul>
+      <ul class="items">
+        <li class="email">意见反馈</li>
+        <li class="question">常见问题</li>
+      </ul>
+      <p class="tel">客服电话&nbsp;xxx-xxx-xx</p>
+      <p class="time">服务时间：&nbsp;9:00-23:00</p>
+    </div>
+  </div>
+
+  <!-- 底部栏开始 -->
+  <div class="bottom-bar"></div>
+  <!-- 底部栏结束 -->
+  <script src="../lib/jquery.min.js"></script>
+  <script src="../common/bottomBar/bottomBar.js"></script>
+</body>
+</html>
